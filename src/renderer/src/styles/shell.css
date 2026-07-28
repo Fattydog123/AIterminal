@@ -1,0 +1,141 @@
+/* Layer 03: application frame and stable three-column geometry. */
+.app-shell {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-rows: var(--titlebar-h) minmax(0, 1fr);
+  background: var(--canvas);
+}
+
+.app-shell.settings-active {
+  --sidebar-w: 288px;
+}
+
+.titlebar {
+  z-index: 50;
+  display: grid;
+  grid-template-columns: var(--sidebar-w) minmax(0, 1fr) 138px;
+  height: var(--titlebar-h);
+  border-bottom: 1px solid var(--divider);
+  background: var(--canvas);
+  -webkit-app-region: drag;
+  user-select: none;
+}
+
+.titlebar-brand,
+.titlebar-task,
+.window-controls {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+}
+
+.titlebar-brand {
+  gap: 8px;
+  padding: 0 14px;
+  border-right: 1px solid var(--divider);
+  font-family: "Segoe UI Variable Display", "Microsoft YaHei UI", sans-serif;
+  font-size: 16px;
+  font-weight: 650;
+}
+
+.titlebar-brand > svg {
+  color: var(--text-tertiary);
+}
+
+.titlebar-task {
+  justify-content: center;
+  gap: 8px;
+  padding-inline: 20px;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.titlebar-task > span:last-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.running-dot,
+.task-status.running,
+.connection-dot {
+  width: 6px;
+  height: 6px;
+  flex: 0 0 6px;
+  border-radius: 50%;
+  background: var(--brand);
+}
+
+.window-controls {
+  justify-content: flex-end;
+  -webkit-app-region: no-drag;
+}
+
+.window-controls .window-button {
+  width: 46px;
+  height: 39px;
+  border-radius: 0;
+}
+
+.window-controls .window-button:hover {
+  background: var(--surface-hover);
+}
+
+.window-controls .close-window:hover {
+  background: #c42b1c;
+  color: #fff;
+}
+
+.product-mark {
+  position: relative;
+  display: inline-grid;
+  width: 19px;
+  height: 19px;
+  flex: 0 0 19px;
+  grid-template-columns: repeat(3, 4px);
+  align-items: end;
+  justify-content: center;
+  gap: 2px;
+  border: 1px solid var(--border-strong);
+  border-radius: 5px;
+  background: var(--surface);
+}
+
+.product-mark span {
+  display: block;
+  width: 4px;
+  border-radius: 2px 2px 1px 1px;
+  background: var(--brand);
+}
+
+.product-mark span:nth-child(1) { height: 5px; opacity: 0.55; }
+.product-mark span:nth-child(2) { height: 10px; opacity: 0.78; }
+.product-mark span:nth-child(3) { height: 14px; }
+
+.workspace-grid {
+  display: grid;
+  min-width: 0;
+  min-height: 0;
+  grid-template-columns: var(--sidebar-w) minmax(0, 1fr) var(--inspector-w);
+}
+
+/*
+ * The compact/expanded inspector widths are owned by the resizable grid in
+ * ui/ui-shell.css via --workspace-inspector-width (52px compact, user width
+ * when expanded). Legacy three-column overrides here used to outrank that
+ * five-column grid by specificity and collapsed the workspace whenever the
+ * compact environment panel was expanded — do not reintroduce them.
+ */
+
+@media (max-width: 1120px) {
+  .app-shell.settings-active {
+    --sidebar-w: 232px;
+  }
+}
+
+@media (max-width: 980px) {
+  .app-shell.settings-active {
+    --sidebar-w: 64px;
+  }
+}

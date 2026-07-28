@@ -1,0 +1,555 @@
+/*
+ * Layer 06: 任务队列 / 运行记录 的视觉层级阶梯。
+ *
+ * 载入顺序在 Layer 05（ai-terminal-theme.css）之后，因此在同等优先级下靠源码
+ * 顺序取胜，全文件不需要任何 !important。
+ *
+ * 权重阶梯约定 —— 每个元素只占一级，同一页面只允许一个 hero：
+ *
+ *   hero    17px / 640 / --studio-text        每页恰好一个（记录页为运行名称）
+ *   title   13.5px / 620 / --studio-text      页面主对象（队列页为任务名称）、结论标题
+ *   figure  15px / 640 / --studio-text，等宽数字   每个次级面板一个锚点数字
+ *   body    11.5px / --studio-secondary       行内数据、dd
+ *   label   10.5px / --studio-tertiary        dt、说明、次级面板的中文小节标题
+ *   micro   9.5px / --studio-tertiary         运行编号、列头、details 摘要
+ *
+ * 中文不下探到 micro 级：uppercase 与字距对汉字无效，字号是唯一可读性通道，
+ * 因此中文小节标题止步于 label（10.5px，比改版前的 9px 更大），并从
+ * --studio-secondary 降到 --studio-tertiary 来完成降级。实测
+ * rgba(255,255,255,.48) 叠在约 #0e131b 面板上约 4.8:1，满足 AA 正文要求。
+ * 若日后调色板变更需重新测量。
+ */
+
+/* ─── §1 主次材质：主列更亮、无模糊、带边缘高光；次列更暗、保留模糊、无边缘 ─── */
+
+.queue-table-panel,
+.run-detail {
+  min-width: 0;
+  border-color: var(--studio-border);
+  background: var(--studio-surface-strong);
+  box-shadow: var(--studio-edge-raised);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.queue-inspector,
+.run-inspector,
+.run-list {
+  background: var(--studio-glass-sidebar);
+  box-shadow: none;
+  backdrop-filter: blur(24px) saturate(1.08);
+  -webkit-backdrop-filter: blur(24px) saturate(1.08);
+}
+
+.queue-inspector { border-left-color: var(--studio-divider); }
+.run-inspector { border-left-color: var(--studio-divider); }
+.run-list { border-right-color: var(--studio-divider); }
+
+/* ─── §2 标题压缩：标题降到辅助级，为内容让出主导权 ─── */
+
+.page-header.is-compact {
+  align-items: center;
+  min-height: 34px;
+  margin-bottom: 12px;
+}
+
+.page-header.is-compact > div:first-child {
+  display: flex;
+  min-width: 0;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.page-header.is-compact h1 {
+  flex: 0 0 auto;
+  margin: 0;
+  color: var(--studio-secondary);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -.1px;
+}
+
+.page-header.is-compact p {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--studio-tertiary);
+  font-size: var(--studio-type-label);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ─── §3 队列状态条：原 summary-cards 降为筛选条，每个计数即筛选器 ─── */
+
+.queue-status-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 4px;
+  border-bottom: 1px solid var(--studio-divider);
+  padding: 5px 7px;
+}
+
+.queue-status-chip {
+  display: inline-flex;
+  min-height: 28px;
+  align-items: baseline;
+  gap: 6px;
+  border: 1px solid transparent;
+  border-radius: var(--studio-radius-control);
+  background: transparent;
+  padding: 0 8px;
+  text-align: left;
+}
+
+.queue-status-chip:hover { background: var(--studio-hover); }
+.queue-status-chip:focus-visible { outline-offset: -2px; }
+
+.queue-status-chip[aria-pressed="true"] {
+  border-color: var(--studio-border-strong);
+  background: var(--studio-subtle);
+}
+
+.queue-status-chip .summary-icon {
+  width: 14px;
+  height: 14px;
+  align-self: center;
+  border-radius: 0;
+  background: transparent;
+}
+
+.queue-status-chip small,
+.queue-status-ledger small {
+  color: var(--studio-tertiary);
+  font-size: var(--studio-type-label);
+}
+
+/* 上限 12px/600 --studio-secondary：必须低于 13.5px/620 的 title 级，
+   否则次级计数会和页面主对象（任务名称）落在同一级。 */
+.queue-status-chip strong,
+.queue-status-ledger strong {
+  color: var(--studio-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.queue-status-chip em,
+.queue-status-ledger em {
+  color: var(--studio-tertiary);
+  font-size: var(--studio-type-micro);
+  font-style: normal;
+}
+
+.queue-status-chip[aria-pressed="true"] small { color: var(--studio-secondary); }
+.queue-status-chip[aria-pressed="true"] strong { color: var(--studio-text); }
+
+.queue-status-ledger {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-left: auto;
+  border-left: 1px solid var(--studio-divider);
+  padding-left: 12px;
+}
+
+.queue-status-ledger > span {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+/* 去掉 33px 色块底，改为满饱和字形着色：外围可扫视性不降，
+   同时补上原先缺失的 queued / cost 变体（两者过去都落回同一种蓝）。 */
+.queue-status-chip .summary-icon.running { background: transparent; color: var(--studio-warning); }
+.queue-status-chip .summary-icon.queued { background: transparent; color: var(--studio-focus); }
+.queue-status-chip .summary-icon.paused { background: transparent; color: var(--proof-bright); }
+.queue-status-chip .summary-icon.success { background: transparent; color: var(--studio-success); }
+.queue-status-chip .summary-icon.error { background: transparent; color: var(--studio-danger); }
+.queue-status-chip .summary-icon.cost { background: transparent; color: var(--studio-brand); }
+
+/* ─── §4 队列类型反转：任务名称成为页面主对象 ─── */
+
+.queue-table .task-cell { min-width: 0; }
+
+.queue-table .task-cell strong {
+  color: var(--studio-text);
+  font-size: var(--studio-type-title);
+  font-weight: var(--studio-weight-title);
+  letter-spacing: -.15px;
+}
+
+.queue-table .task-cell small {
+  overflow: hidden;
+  margin-top: 3px;
+  color: var(--studio-tertiary);
+  font-family: var(--studio-font-mono);
+  font-size: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.queue-table .table-row {
+  min-height: 56px;
+  grid-template-columns: 88px minmax(200px, 2.4fr) minmax(130px, 1fr) 88px 18px;
+  color: var(--studio-tertiary);
+  font-size: var(--studio-type-body);
+  font-variant-numeric: tabular-nums;
+}
+
+.queue-table .table-head {
+  min-height: 30px;
+  border-bottom: 1px solid var(--studio-divider);
+  background: transparent;
+  color: var(--studio-tertiary);
+  font-size: var(--studio-type-micro);
+  font-weight: 500;
+  letter-spacing: .6px;
+}
+
+.queue-table.data-table { min-width: 560px; }
+
+/* .queue-layout 是 overflow: hidden，全局 outline-offset: 2px 会裁掉首尾行的焦点环。 */
+.queue-table .table-row:focus-visible { outline-offset: -2px; }
+
+/* ─── §5 队列检查器：单一锚点数字，其余全部降级 ─── */
+
+.queue-inspector {
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.queue-inspector h2 {
+  color: var(--studio-secondary);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.queue-inspector h3 {
+  color: var(--studio-tertiary);
+  font-size: var(--studio-type-label);
+  font-weight: 500;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.queue-inspector .metadata-list { margin-top: 8px; }
+.queue-inspector .metadata-list dt { color: var(--studio-tertiary); font-size: var(--studio-type-label); }
+
+.queue-inspector .metadata-list dd {
+  color: var(--studio-secondary);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 次级面板的唯一锚点是一个数字而非标题。15px 等宽数字的光学重量低于
+   13.5px/620 的中文标题，因此能撑住这一列又不会盖过主列的任务名称。 */
+.task-state-card {
+  border-color: var(--studio-border-strong);
+  background: var(--studio-surface);
+  box-shadow: none;
+}
+
+.task-state-card > strong {
+  color: var(--studio-text);
+  font-size: 15px;
+  font-weight: var(--studio-weight-hero);
+  font-variant-numeric: tabular-nums;
+}
+
+.task-state-card p { color: var(--studio-tertiary); font-size: var(--studio-type-label); }
+
+/* ─── §6 记录页结论：升到主列顶部并占满宽度 ─── */
+
+/* .diagnosis-card 过去无条件是警告橙，而它的 .warning 修饰符从来没有规则。
+   把基态改为成功绿、警告态交给 .warning，颜色才重新成为有效的层级通道。 */
+.diagnosis-card {
+  border-color: color-mix(in srgb, var(--studio-success) 30%, transparent);
+  background: var(--studio-success-soft);
+  color: var(--studio-success);
+}
+
+.diagnosis-card.warning {
+  border-color: color-mix(in srgb, var(--studio-warning) 30%, transparent);
+  background: var(--studio-warning-soft);
+  color: var(--studio-warning);
+}
+
+.diagnosis-card strong {
+  font-size: var(--studio-type-title);
+  font-weight: var(--studio-weight-title);
+}
+
+.diagnosis-card span {
+  color: var(--studio-secondary);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.run-verdict { padding: 13px 15px; }
+.run-verdict .diagnosis-card { padding: 11px 13px; }
+
+/* ─── §7 记录页概览：去掉卡片外壳，只留一个数字，其余并入时间线 ─── */
+
+.run-overview {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 18px;
+  row-gap: 4px;
+  border: 0;
+  border-bottom: 1px solid var(--studio-divider);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  padding: 7px 15px;
+}
+
+.run-overview div,
+.run-overview div:first-child,
+.run-overview div:last-child {
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  align-items: baseline;
+  gap: 6px;
+  border: 0;
+  background: transparent;
+  padding: 0;
+}
+
+/* 中文标签会逐字折行；条目内一律不换行，放不下时整条换行。 */
+.run-overview span,
+.run-overview small {
+  color: var(--studio-tertiary);
+  font-size: var(--studio-type-micro);
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.run-overview strong {
+  margin: 0;
+  color: var(--studio-secondary);
+  font-size: var(--studio-type-body);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.run-overview div:first-child strong { color: var(--studio-text); font-size: 15px; }
+
+/* §7c 运行标识拿到本页唯一的 hero；eyebrow 过去被 --studio-focus 染成
+   全页最亮的一串哈希，这里只改色，title 里的完整编号保留。 */
+.run-detail > header h2 {
+  color: var(--studio-text);
+  font-size: var(--studio-type-hero);
+  font-weight: var(--studio-weight-hero);
+  letter-spacing: -.2px;
+}
+
+.run-detail > header .eyebrow { color: var(--studio-tertiary); font-size: var(--studio-type-micro); }
+.run-detail > header p { color: var(--studio-tertiary); font-size: var(--studio-type-label); }
+.run-detail > header .status-pill { min-height: 26px; padding: 0 10px; font-size: 11px; }
+
+/* §7d 时间线去外壳；事件流从 8px 抬到 10px —— 它是主列里体量最大的一块，
+   一块读不清的内容无法让这一列读起来像主列。 */
+.performance-timeline > div {
+  grid-template-columns: 70px minmax(0, 1fr) 96px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+  color: var(--studio-secondary);
+  font-size: var(--studio-type-label);
+}
+
+.performance-timeline strong {
+  color: var(--studio-secondary);
+  font-size: var(--studio-type-label);
+  font-variant-numeric: tabular-nums;
+}
+
+.diagnostic-panel-heading h3 { color: var(--studio-text); font-size: 12px; font-weight: 600; }
+.diagnostic-panel-heading p { color: var(--studio-tertiary); font-size: 10px; }
+
+.event-table { font-size: 10px; }
+.event-table > div { min-height: 26px; }
+.event-table time,
+.event-table code { color: var(--studio-tertiary); }
+.event-table code { font-weight: 500; }
+.event-table p { color: var(--studio-secondary); }
+.event-table .level-info { color: var(--studio-tertiary); }
+/* .level-error 此前全库无规则：失败事件只能靠 8px 的“失败”二字辨认。 */
+.event-table .level-error { color: var(--studio-danger); }
+
+/* ─── §8 记录检查器：整体压到 label 级，只有琐碎项折叠 ─── */
+
+.run-inspector { min-height: 0; }
+
+.run-inspector > header h2 {
+  color: var(--studio-tertiary);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .5px;
+}
+
+.run-inspector h3 {
+  color: var(--studio-tertiary);
+  font-size: var(--studio-type-label);
+  font-weight: 500;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.run-inspector .metadata-list dt { color: var(--studio-tertiary); font-size: var(--studio-type-label); }
+
+.run-inspector .metadata-list dd {
+  color: var(--studio-secondary);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.run-compare dd { color: var(--studio-text); }
+
+.run-list > button:focus-visible,
+.run-inspector summary:focus-visible { outline-offset: -2px; }
+
+/* 折叠标记是必需的：没有小三角的 summary 会被读成“这一节被删了”而不是“收起了”。
+   几何沿用 .library-scroll summary::before，但作用域限定在新类上。 */
+.run-trivia > summary {
+  display: flex;
+  min-height: 24px;
+  align-items: center;
+  gap: 6px;
+  color: var(--studio-tertiary);
+  cursor: pointer;
+  font-size: var(--studio-type-label);
+  list-style: none;
+}
+
+.run-trivia > summary::-webkit-details-marker { display: none; }
+
+.run-trivia > summary::before {
+  border: 4px solid transparent;
+  border-left-color: currentColor;
+  content: "";
+  transform: translateX(1px);
+}
+
+.run-trivia[open] > summary::before { transform: rotate(90deg) translateY(1px); }
+
+.run-trivia .metadata-list { margin-top: 6px; }
+
+.run-trivia .metadata-list dt,
+.run-trivia .metadata-list dd {
+  color: var(--studio-tertiary);
+  font-family: var(--studio-font-mono);
+  font-size: var(--studio-type-micro);
+}
+
+/* §8b 运行列表：可读、更窄，权重交给选中态 */
+.run-list > button { min-height: 50px; }
+.run-list strong { color: var(--studio-secondary); font-size: 12px; font-weight: 600; }
+.run-list > button.is-active strong { color: var(--studio-text); }
+
+.run-list small {
+  color: var(--studio-tertiary);
+  font-family: var(--studio-font-mono);
+  font-size: var(--studio-type-micro);
+}
+
+/* ─── §9 满高布局：用行网格取代 calc() 魔法数字 ─── */
+
+.queue-page,
+.runs-page {
+  display: grid;
+  min-height: 0;
+  height: 100%;
+  grid-template-rows: auto minmax(0, 1fr);
+  overflow: hidden;
+}
+
+.queue-layout,
+.runs-layout {
+  min-height: 0;
+  height: auto;
+}
+
+.queue-layout { grid-template-columns: minmax(0, 1fr) 300px; }
+.runs-layout { grid-template-columns: 208px minmax(0, 1fr) 288px; }
+
+.queue-table-panel,
+.run-detail { min-height: 0; }
+
+.queue-table-panel { display: flex; flex-direction: column; }
+
+/* 让表格自带滚动容器：状态条和工具栏保持钉住，三行内容才会读成
+   “这是一个当前很短的列表”，而不是“这一页什么都没有”。 */
+.queue-table-panel > .data-table {
+  flex: 1;
+  min-height: 0;
+  align-content: start;
+  overflow: auto;
+}
+
+/* 无条件复位窄屏隐藏：过去 display:none 会真的删掉请求状态、任务编号、
+   已知费用、恢复状态以及取消/恢复/移除按钮。 */
+.queue-inspector { display: flex; }
+.run-inspector { display: block; }
+
+/* 响应式规则必须写在自己的容器查询里且排在无条件规则之后，
+   否则尾部的无条件声明会静默盖掉容器查询（媒体/容器查询不增加优先级）。 */
+@container studio-page (max-width: 880px) {
+  .queue-page { display: block; height: auto; overflow-y: auto; }
+  .queue-layout { grid-template-columns: minmax(0, 1fr); overflow: visible; }
+  .queue-table-panel > .data-table { overflow-x: auto; }
+
+  .queue-inspector {
+    max-height: min(320px, 46dvh);
+    border-top: 1px solid var(--studio-border);
+    border-left: 0;
+    overflow-y: auto;
+  }
+
+  /* 检查器在此宽度已可见，窄屏专用的恢复条不再需要（按钮在检查器页脚里逐字保留）。 */
+  .queue-compact-recovery { display: none; }
+  .queue-status-strip { padding: 5px; }
+
+  .page-header.is-compact { align-items: flex-start; }
+  .page-header.is-compact > div:first-child { flex-wrap: wrap; gap: 2px 10px; }
+  .page-header.is-compact p { white-space: normal; }
+}
+
+@container studio-page (max-width: 1100px) {
+  .runs-layout {
+    grid-template-columns: minmax(0, 1fr) 288px;
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+
+  .run-list {
+    max-height: min(150px, 30dvh);
+    border-right: 0;
+    border-bottom: 1px solid var(--studio-divider);
+    grid-column: 1 / -1;
+    overflow-y: auto;
+  }
+}
+
+@container studio-page (max-width: 820px) {
+  .runs-page { display: block; height: auto; overflow-y: auto; }
+  .runs-layout { grid-template-columns: minmax(0, 1fr); height: auto; overflow: visible; }
+  .run-detail { overflow: visible; }
+
+  .run-inspector {
+    max-height: none;
+    border-top: 1px solid var(--studio-border);
+    border-left: 0;
+  }
+
+  .page-header.is-compact { align-items: flex-start; }
+  .page-header.is-compact > div:first-child { flex-wrap: wrap; gap: 2px 10px; }
+  .page-header.is-compact p { white-space: normal; }
+}
+
+@container studio-page (max-width: 560px) {
+  .performance-timeline > div { grid-template-columns: 52px minmax(0, 1fr) 74px; gap: 6px; }
+}

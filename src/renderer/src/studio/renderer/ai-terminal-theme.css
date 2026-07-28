@@ -1,0 +1,2588 @@
+/* Layer 05: Studio feature/native adaptation over the canonical Shadow reset. */
+
+.studio-app,
+.standard-page,
+.assets-page,
+.linear-view {
+  background: transparent;
+  color: var(--studio-text);
+}
+
+/* .run-detail 是记录页的主列，底色由 Layer 06 给出；这里只保留字色。 */
+.run-detail { color: var(--studio-text); }
+
+.page-viewport {
+  background: var(--studio-glass-workspace);
+  color: var(--studio-text);
+}
+
+.activity-rail {
+  align-items: stretch;
+  border-color: var(--studio-border);
+  background: var(--studio-sidebar);
+  padding: 10px 12px;
+}
+.activity-main,
+.activity-bottom { gap: 3px; }
+.activity-rail button {
+  min-height: 36px;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 9px;
+  border-radius: 6px;
+  color: var(--studio-secondary);
+  padding: 0 10px;
+  font-size: 12px;
+}
+.activity-rail button:hover {
+  background: var(--studio-hover);
+  color: var(--studio-text);
+}
+.activity-rail button.is-active,
+.activity-rail button[aria-current="page"] {
+  background: var(--studio-selected);
+  color: var(--studio-text);
+  font-weight: 600;
+}
+.activity-rail button.is-active::before,
+.activity-rail button[aria-current="page"]::before {
+  left: 0;
+  width: 3px;
+  height: 20px;
+  border-radius: 0 3px 3px 0;
+  background: var(--studio-focus);
+}
+.activity-rail button em {
+  top: 10px;
+  right: 9px;
+  background: var(--studio-warning);
+}
+.rail-avatar {
+  width: 30px;
+  height: 30px;
+  border-color: color-mix(in srgb, var(--studio-focus) 28%, transparent);
+  border-radius: 6px;
+  background: rgba(100, 200, 255, .11);
+  color: var(--studio-focus);
+  margin: 8px 8px 2px;
+}
+
+.workspace-loading {
+  background: transparent;
+  color: var(--studio-secondary);
+}
+.workspace-loading strong,
+.empty-page-state h2,
+.linear-heading h1,
+.page-header h1,
+.linear-section h2,
+.section-heading h2,
+.studio-app h1,
+.studio-app h2,
+.studio-app h3 {
+  color: var(--studio-text);
+  font-family: "Segoe UI Variable Display", "Noto Sans SC", "Microsoft YaHei UI", sans-serif;
+}
+.workspace-loading small,
+.empty-page-state,
+.linear-heading p,
+.page-header p,
+.linear-section p,
+.section-heading p,
+.muted-copy,
+.section-copy,
+.field-help { color: var(--studio-tertiary); }
+.exposure-loader i { background: var(--studio-border-strong); }
+.exposure-loader i:nth-child(3) { background: var(--studio-brand); }
+.empty-page-state svg,
+.eyebrow { color: var(--studio-focus); }
+
+.workflow-toolbar {
+  border-color: var(--studio-divider);
+  background: var(--studio-glass-strip);
+}
+.workflow-switcher select,
+.search-field,
+.field input,
+.field textarea,
+.field select,
+.settings-field-row input,
+.settings-field-row select,
+.input-with-prefix,
+.compact-filter select,
+.filename-preview,
+.compare-toolbar > label select {
+  border-color: var(--studio-border-strong);
+  background: var(--studio-native-control-surface);
+  color: var(--studio-text);
+}
+.workflow-switcher > button,
+.toolbar-center,
+.toolbar-center button.is-active,
+.table-toolbar > button,
+.run-list-toolbar > button,
+.path-input-row > button,
+.style-chip-row button,
+.tag-row button {
+  border-color: var(--studio-border);
+  background: var(--studio-subtle);
+  color: var(--studio-secondary);
+}
+.workflow-switcher > button:hover:not(:disabled),
+.toolbar-center button:hover,
+.toolbar-center button.is-active,
+.icon-button:hover,
+.toolbar-button:hover,
+.table-toolbar > button:hover,
+.run-list-toolbar > button:hover,
+.path-input-row > button:hover,
+.style-chip-row button:hover,
+.tag-row button:hover {
+  border-color: var(--studio-border-strong);
+  background: var(--studio-hover);
+  color: var(--studio-text);
+}
+.workflow-breadcrumbs span,
+.workflow-breadcrumbs button,
+.icon-button,
+.toolbar-button { color: var(--studio-secondary); }
+.workflow-breadcrumbs button:hover,
+.workflow-breadcrumbs button[aria-current="page"] { color: var(--studio-text); }
+.toolbar-separator { background: var(--studio-border); }
+
+.primary-button {
+  border-color: var(--studio-brand);
+  background: var(--studio-brand);
+  color: var(--studio-text-inverse);
+  box-shadow: var(--studio-shadow-control);
+}
+.primary-button:hover { border-color: var(--studio-brand-hover); background: var(--studio-brand-hover); }
+.run-button {
+  border-color: color-mix(in srgb, var(--studio-focus) 32%, transparent);
+  background: rgba(100, 200, 255, .25);
+  color: #e9f5ff;
+  box-shadow: 0 7px 20px rgba(77, 153, 255, .18);
+}
+.run-button:hover { background: rgba(100, 200, 255, .4); box-shadow: 0 9px 24px rgba(77, 153, 255, .28); }
+.secondary-button {
+  border-color: var(--studio-border-strong);
+  background: var(--studio-control-surface);
+  color: var(--studio-text);
+}
+.secondary-button:hover {
+  border-color: var(--studio-border-strong);
+  background: var(--studio-subtle);
+}
+.danger-button { border-color: color-mix(in srgb, var(--studio-danger) 55%, transparent); background: color-mix(in srgb, var(--studio-danger) 18%, transparent); }
+.danger-ghost,
+.danger-text-button {
+  border-color: color-mix(in srgb, var(--studio-danger) 30%, transparent);
+  background: var(--studio-danger-soft);
+  color: var(--studio-danger);
+}
+.run-selected-button {
+  border-color: color-mix(in srgb, var(--studio-focus) 24%, transparent);
+  color: var(--studio-secondary);
+}
+.run-selected-button:hover:not(:disabled) {
+  border-color: color-mix(in srgb, var(--studio-focus) 44%, transparent);
+  background: rgba(100, 200, 255, .12);
+  color: var(--studio-text);
+}
+.local-image-toolbar { border-color: color-mix(in srgb, var(--studio-brand) 30%, transparent); color: var(--studio-brand); }
+.local-image-toolbar:hover:not(:disabled) {
+  border-color: var(--studio-brand);
+  background: var(--studio-brand-soft);
+  color: var(--studio-brand);
+}
+.run-button kbd {
+  border-color: rgb(255 255 255 / 34%);
+  background: rgb(255 255 255 / 14%);
+  color: #fff;
+}
+.toolbar-account-route {
+  overflow: visible;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--studio-secondary);
+  box-shadow: none;
+}
+.studio-route-anchor,
+.studio-route-refresh {
+  border-color: var(--studio-border-strong);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, .035), transparent 58%),
+    var(--studio-control-surface);
+  box-shadow: var(--studio-shadow-control);
+}
+.studio-route-trigger { color: var(--studio-text); font-size: 11px; }
+.studio-route-trigger-copy small { color: var(--studio-tertiary); font-size: 9px; }
+.studio-route-trigger-copy strong { font-size: 11px; }
+.studio-route-model-trigger[data-full-label] { position: relative; }
+.studio-route-model-trigger[data-full-label][aria-expanded="false"]:is(:hover, :focus-visible)::after {
+  position: absolute;
+  z-index: 140;
+  top: calc(100% + 7px);
+  right: 0;
+  width: max-content;
+  max-width: min(360px, calc(100vw - 24px));
+  border: 1px solid var(--studio-border-strong);
+  border-radius: 7px;
+  background: var(--studio-popover-surface);
+  color: var(--studio-text);
+  padding: 6px 8px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, .34);
+  content: attr(data-full-label);
+  font-size: 10.5px;
+  font-weight: 500;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+  pointer-events: none;
+  text-align: left;
+  white-space: normal;
+}
+.studio-route-trigger:hover:not(:disabled),
+.studio-route-trigger[aria-expanded="true"] {
+  background: var(--studio-hover);
+  color: #fff;
+}
+.studio-route-trigger:disabled { color: var(--studio-tertiary); }
+.studio-route-popover {
+  border-color: var(--studio-border-strong);
+  border-radius: 14px;
+  background: var(--studio-popover-surface);
+  box-shadow: var(--studio-shadow);
+  backdrop-filter: blur(18px) saturate(1.15);
+  -webkit-backdrop-filter: blur(18px) saturate(1.15);
+}
+.studio-route-popover-heading { border-bottom-color: var(--studio-divider); color: var(--studio-secondary); font-size: 11px; }
+.studio-route-popover-heading small { color: var(--studio-tertiary); font-size: 10px; }
+.studio-route-search {
+  border-color: rgba(255, 255, 255, .13);
+  background: rgba(255, 255, 255, .065);
+  color: var(--studio-tertiary);
+}
+.studio-route-search input { color: var(--studio-text); font-size: 11px; }
+.studio-route-search input::placeholder { color: var(--studio-tertiary); }
+.studio-route-options > button:hover,
+.studio-route-options > button:focus-visible,
+.studio-route-options > button.is-selected {
+  border-color: color-mix(in srgb, var(--studio-focus) 20%, transparent);
+  background: var(--studio-option-hover);
+  color: var(--studio-text);
+}
+.studio-route-options strong { color: var(--studio-text); font-size: 11px; }
+.studio-route-options small,
+.studio-route-empty { color: var(--studio-tertiary); font-size: 9.5px; }
+.studio-route-capability-field > span { color: var(--studio-tertiary); }
+.studio-route-capability-field select {
+  border-color: var(--studio-border-strong);
+  background: var(--studio-native-control-surface);
+  color: var(--studio-text);
+}
+.studio-route-capability-charge { color: var(--studio-warning); }
+.studio-route-capability-error { color: var(--studio-danger); }
+.studio-route-empty-state .studio-route-capability-confirm {
+  border-color: var(--studio-brand-hover);
+  background: var(--studio-brand);
+}
+.studio-route-empty-state .studio-route-capability-confirm:hover:not(:disabled) { background: var(--studio-brand-hover); }
+.studio-route-refresh { color: var(--studio-secondary); }
+.toolbar-account-route > button {
+  border-color: var(--studio-border-strong);
+  color: var(--studio-secondary);
+}
+.toolbar-account-route > button:hover:not(:disabled) {
+  background: var(--studio-hover);
+  color: var(--studio-text);
+}
+.toolbar-account-route:focus-within {
+  border-color: var(--studio-focus);
+  box-shadow: 0 0 0 2px var(--studio-focus-ring);
+}
+.toolbar-overflow-menu {
+  border-color: var(--studio-border-strong);
+  border-radius: 12px;
+  background: var(--studio-popover-surface);
+  box-shadow: var(--studio-shadow);
+  backdrop-filter: blur(20px) saturate(1.15);
+  -webkit-backdrop-filter: blur(20px) saturate(1.15);
+}
+.toolbar-overflow-menu button { color: var(--studio-secondary); }
+.toolbar-overflow-menu button:hover:not(:disabled),
+.toolbar-overflow-menu button:focus-visible { background: var(--studio-hover); color: var(--studio-text); }
+
+.workflow-readiness {
+  border-color: var(--studio-divider);
+  background: var(--studio-subtle);
+}
+.workflow-readiness-summary > strong,
+.workflow-readiness-details strong { color: var(--studio-text); }
+.workflow-readiness-primary,
+.workflow-readiness-details p { color: var(--studio-secondary); }
+.readiness-toggle,
+.readiness-action {
+  border-color: color-mix(in srgb, var(--studio-warning) 30%, transparent);
+  background: var(--studio-warning-soft);
+  color: var(--studio-warning);
+}
+.workflow-readiness-details,
+.compatible-picker {
+  border-color: var(--studio-border-strong) !important;
+  background: var(--studio-popover-surface) !important;
+  box-shadow: var(--studio-shadow);
+}
+.workflow-readiness-details article,
+.compatible-picker header,
+.compatible-picker footer { border-color: var(--studio-divider); }
+
+.node-library,
+.node-inspector,
+.asset-inspector {
+  border-color: var(--studio-border);
+  background: var(--studio-glass-inspector);
+}
+.panel-tabs { border-color: var(--studio-divider); }
+.panel-tabs button { color: var(--studio-secondary); }
+.panel-tabs button.is-active { color: var(--studio-text); font-weight: 600; }
+.panel-tabs button.is-active::after { background: var(--studio-focus); }
+.search-field:focus-within,
+.field input:focus,
+.field textarea:focus,
+.field select:focus,
+.input-with-prefix:focus-within,
+.compact-filter select:focus {
+  border-color: var(--studio-focus);
+  box-shadow: 0 0 0 2px var(--studio-focus-ring);
+}
+.field input[type="checkbox"],
+.field input[type="radio"],
+.clear-secret-check input,
+.plugin-enabled-check input {
+  width: 14px;
+  min-width: 14px;
+  height: 14px;
+  min-height: 14px;
+  padding: 0;
+  accent-color: var(--studio-focus);
+}
+.clear-secret-check { align-self: flex-start; }
+.search-field input,
+.inspector-header input,
+.command-palette > label input,
+.compare-filter input { color: var(--studio-text); }
+.search-field input::placeholder { color: var(--studio-tertiary); }
+.library-favorites h3,
+.library-scroll summary,
+.panel-kicker,
+.inspector-section h3,
+.asset-inspector h3,
+.queue-inspector h3,
+.run-inspector h3,
+.plugin-security-panel h3 { color: var(--studio-secondary); }
+.quick-node-grid button,
+.library-node-icon,
+.inspector-icon,
+.command-icon {
+  border-color: var(--studio-border);
+  background: var(--studio-subtle);
+  color: var(--studio-secondary);
+}
+.quick-node-grid button:hover,
+.library-list > button:hover,
+.compatible-picker > div > button:hover,
+.outline-tree button:hover {
+  border-color: var(--studio-border-strong);
+  background: var(--studio-hover);
+  color: var(--studio-text);
+}
+.quick-node-grid .local-image-quick {
+  border-color: color-mix(in srgb, var(--studio-brand) 30%, transparent);
+  background: var(--studio-brand-soft);
+  color: var(--studio-brand);
+}
+.library-list strong,
+.compatible-picker strong,
+.outline-tree button { color: var(--studio-text); }
+.library-list small,
+.compatible-picker small,
+.panel-kicker,
+.outline-status,
+.compatible-empty { color: var(--studio-tertiary); }
+
+.canvas-surface,
+.canvas-surface .react-flow {
+  background-color: var(--studio-glass-canvas);
+  background-image: none;
+}
+.canvas-surface .react-flow__background {
+  --xy-background-color-props: transparent !important;
+}
+.canvas-surface .react-flow__controls,
+.studio-minimap,
+.canvas-status-strip {
+  border-color: var(--studio-border-strong);
+  background: var(--studio-glass-popover) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .28);
+}
+.canvas-surface .react-flow__controls-button {
+  border-color: var(--studio-border);
+  background: var(--studio-surface);
+  fill: var(--studio-secondary);
+}
+.canvas-surface .react-flow__controls-button:hover {
+  background: var(--studio-hover);
+  fill: var(--studio-text);
+}
+.canvas-surface .react-flow__attribution { display: none !important; }
+.canvas-status-strip { color: var(--studio-secondary); }
+.signal-dot,
+.connection-indicator i {
+  background: var(--studio-focus);
+  box-shadow: 0 0 0 3px rgba(100, 200, 255, .12);
+}
+
+.workflow-node {
+  border-color: var(--studio-border-strong);
+  border-radius: 7px;
+  background: var(--studio-glass-node);
+  color: var(--studio-text);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, .34), inset 0 1px 0 rgba(255, 255, 255, .035);
+}
+.workflow-node.is-selected {
+  border-color: color-mix(in srgb, var(--studio-focus) 72%, transparent);
+  box-shadow: 0 0 0 2px rgba(100, 200, 255, .14), 0 12px 30px rgba(0, 0, 0, .4);
+}
+.node-signal-cap { background: rgba(255, 255, 255, .18); }
+.workflow-node.status-running .node-signal-cap { background: var(--studio-brand); }
+.workflow-node.status-success .node-signal-cap { background: var(--studio-success); }
+.node-kind-icon {
+  border-color: var(--studio-border);
+  background: var(--studio-subtle);
+  color: var(--studio-secondary);
+}
+.accent-image .node-kind-icon,
+.accent-image { color: var(--studio-brand); }
+.accent-control { color: var(--studio-focus); }
+.port-image,
+.port-images { background: var(--studio-brand) !important; }
+.node-title-block strong,
+.node-parameter-summary dd,
+.project-image-node-preview > button strong,
+.result-image-node-preview > button strong,
+.project-image-node-meta strong { color: var(--studio-text); }
+.node-title-block small,
+.node-port-row small,
+.node-parameter-summary dt,
+.project-image-node-preview > button small,
+.result-image-node-preview > button small,
+.project-image-node-meta small,
+.node-metrics { color: var(--studio-tertiary); }
+.node-mini-action { color: var(--studio-tertiary); }
+.node-mini-action:hover { background: var(--studio-hover); color: var(--studio-text); }
+.node-port-grid,
+.node-footer,
+.project-image-node-meta,
+.result-image-node-meta {
+  border-color: var(--studio-divider);
+  background: var(--studio-subtle);
+}
+.node-port-row { color: var(--studio-secondary); }
+.typed-handle {
+  border-color: var(--studio-surface) !important;
+  box-shadow: 0 0 0 1px var(--studio-border-strong);
+}
+.node-parameter-summary div { border-color: var(--studio-divider); }
+.project-image-node-preview,
+.result-image-node-preview,
+.project-image-node-preview > button,
+.result-image-node-preview > button {
+  border-color: var(--studio-divider);
+  background: rgba(255, 255, 255, .025);
+  color: var(--studio-secondary);
+}
+.node-annotation,
+.workflow-note {
+  border-color: color-mix(in srgb, var(--studio-warning) 38%, transparent);
+  background: var(--studio-warning-soft);
+  color: #ffd3a4;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, .24);
+}
+.workflow-note small { color: rgba(255, 255, 255, .56); }
+.workflow-frame {
+  border-color: color-mix(in srgb, var(--studio-focus) 42%, transparent);
+  background: rgba(100, 200, 255, .07);
+  color: #b9dcf7;
+}
+.workflow-frame > header {
+  border-color: color-mix(in srgb, var(--studio-focus) 20%, transparent);
+  background: rgba(100, 200, 255, .08);
+}
+.workflow-frame > header strong,
+.workflow-frame > p,
+.workflow-frame > small { color: rgba(185, 220, 247, .76); }
+.exposure-stage { background: rgba(255, 255, 255, .16); }
+.exposure-stage.is-done { background: var(--studio-success); }
+.exposure-stage.is-active { background: var(--studio-brand); }
+.exposure-edge.edge-image,
+.exposure-edge.edge-images,
+.exposure-edge.is-active { stroke: var(--studio-brand); }
+.exposure-edge.is-selected:not(.edge-image):not(.edge-images):not(.is-active) { stroke: var(--studio-focus); }
+
+.status-pill {
+  border-color: var(--studio-border-strong);
+  background: var(--studio-subtle);
+  color: var(--studio-secondary);
+}
+.status-pill.status-success,
+.status-pill.status-connected,
+.status-pill.status-adopted {
+  border-color: color-mix(in srgb, var(--studio-success) 30%, transparent);
+  background: var(--studio-success-soft);
+  color: var(--studio-success);
+}
+.status-pill.status-running {
+  border-color: color-mix(in srgb, var(--studio-brand) 34%, transparent);
+  background: var(--studio-brand-soft);
+  color: var(--studio-brand);
+}
+.status-pill.status-queued,
+.status-pill.status-pending,
+.status-pill.status-untested {
+  border-color: color-mix(in srgb, var(--studio-warning) 30%, transparent);
+  background: var(--studio-warning-soft);
+  color: var(--studio-warning);
+}
+.outline-status.status-running,
+.run-status-line.status-running { background: var(--studio-brand); }
+.waterfall-stage.status-running {
+  border-color: color-mix(in srgb, var(--studio-brand) 48%, transparent);
+  background: var(--studio-brand-soft);
+}
+.runtime-dot.state-ready,
+.outline-status.status-success,
+.run-status-line.status-success,
+.provider-dot.status-connected { background: var(--studio-success); }
+.status-pill.status-error,
+.status-pill.status-rejected,
+.status-pill.status-billing-unknown {
+  border-color: color-mix(in srgb, var(--studio-danger) 30%, transparent);
+  background: var(--studio-danger-soft);
+  color: var(--studio-danger);
+}
+.edge-label {
+  border-color: var(--studio-border-strong);
+  background: var(--studio-surface);
+  color: var(--studio-secondary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .28);
+}
+
+.inspector-header,
+.inspector-section,
+.inspector-footer,
+.inspector-state-row,
+.toggle-row,
+.metric-list div,
+.metadata-list div { border-color: var(--studio-divider); }
+.inspector-header p,
+.inspector-state-row > span:not(.status-pill),
+.field > span,
+.field small,
+.toggle-row small,
+.metric-list dt,
+.metadata-list dt,
+.port-inspector-list code { color: var(--studio-tertiary); }
+.toggle-row,
+.toggle-row strong,
+.metric-list dd,
+.metadata-list dd,
+.port-inspector-list div,
+.inspector-empty h2 { color: var(--studio-text); }
+.switch-track {
+  border-color: var(--studio-border-strong);
+  background: rgba(255, 255, 255, .12);
+}
+.switch-track span {
+  background: var(--studio-surface);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .45);
+}
+.switch-track.is-on { border-color: var(--studio-focus); background: var(--studio-focus); }
+.debug-output-editor,
+.project-image-inspector-preview,
+.project-image-inspector-empty,
+.project-image-path code {
+  border-color: var(--studio-border);
+  background: var(--studio-subtle);
+  color: var(--studio-secondary);
+}
+
+.bottom-dock,
+.bottom-dock > header,
+.bottom-dock-collapsed,
+.bottom-content {
+  border-color: var(--studio-border);
+  background: var(--studio-glass-strip);
+}
+.bottom-tabs button,
+.bottom-actions,
+.connection-indicator,
+.event-line,
+.dock-queue-list article,
+.history-strip article,
+.diagnostic-strip,
+.bottom-dock-collapsed { color: var(--studio-secondary); }
+.bottom-tabs button.is-active { color: var(--studio-text); }
+.bottom-tabs button.is-active::after { background: var(--studio-focus); }
+.waterfall-stage,
+.event-line,
+.dock-queue-list article,
+.history-strip article,
+.diagnostic-strip {
+  border-color: var(--studio-divider);
+  background: var(--studio-subtle);
+}
+
+.linear-section,
+.preset-apply-row { border-color: var(--studio-border); }
+.linear-section > header > span {
+  border-color: color-mix(in srgb, var(--studio-focus) 28%, transparent);
+  background: rgba(100, 200, 255, .11);
+  color: var(--studio-focus);
+}
+.large-field textarea,
+.linear-run-bar,
+.linear-preview-panel,
+.linear-preview-meta,
+.preset-create-form,
+.preset-list article,
+.preset-diffs {
+  border-color: var(--studio-border);
+  background: var(--studio-surface);
+}
+.linear-preview-panel {
+  border-color: var(--studio-border);
+  background: var(--studio-sidebar);
+}
+.linear-run-bar strong,
+.linear-preview-meta > strong,
+.preset-list article > label strong,
+.preset-diffs strong { color: var(--studio-text); }
+.linear-run-bar span,
+.linear-run-bar small,
+.linear-preview-meta dt,
+.linear-preview-meta dd,
+.preset-list article > label small,
+.preset-diffs span,
+.preset-diffs small { color: var(--studio-secondary); }
+
+.standard-page { padding: 24px 28px; }
+.queue-layout,
+.runs-layout,
+.integrations-layout,
+.settings-nav,
+.settings-card,
+.collection-editor,
+.plugin-manager,
+.workflow-history-layout > section,
+.workflow-history-side > section {
+  border-color: var(--studio-border);
+  background: var(--studio-glass-inspector);
+}
+.summary-icon,
+.settings-card-icon,
+.provider-logo,
+.provider-hero-icon,
+.boundary-icon {
+  background: rgba(100, 200, 255, .11);
+  color: var(--studio-focus);
+}
+
+/* .queue-table-panel / .queue-inspector / .run-inspector 的材质改由 Layer 06 定义。 */
+.collection-sidebar,
+.asset-inspector,
+.provider-list,
+.run-list,
+.plugin-security-panel,
+.plugin-manager-layout > aside,
+.matrix-layout > aside,
+.mask-workbench > aside {
+  border-color: var(--studio-border);
+  background: var(--studio-glass-inspector);
+}
+.collection-sidebar section > button,
+.collection-sidebar-row > button:first-child,
+.provider-list > button,
+.run-list > button,
+.settings-nav button,
+.plugin-manager-layout > aside > button,
+.derivation-tree button,
+.command-results > button { color: var(--studio-secondary); }
+.collection-sidebar section > button:hover,
+.collection-sidebar section > button.is-active,
+.collection-sidebar-row > button:first-child:hover,
+.collection-sidebar-row > button:first-child.is-active,
+.provider-list > button:hover,
+.provider-list > button.is-active,
+.run-list > button:hover,
+.run-list > button.is-active,
+.settings-nav button:hover,
+.settings-nav button.is-active,
+.plugin-manager-layout > aside > button:hover,
+.plugin-manager-layout > aside > button.is-active,
+.derivation-tree button:hover,
+.derivation-tree button.is-current,
+.command-results > button:hover,
+.command-results > button.is-active,
+button.table-row:hover,
+button.table-row.is-selected {
+  background: var(--studio-selected);
+  color: var(--studio-text);
+}
+.collection-sidebar section > button.is-active,
+.collection-sidebar-row > button:first-child.is-active,
+.provider-list > button.is-active,
+.run-list > button.is-active,
+.settings-nav button.is-active,
+button.table-row.is-selected { box-shadow: inset 3px 0 var(--studio-focus); }
+
+.asset-browser,
+.integration-detail,
+.settings-content,
+.plugin-manager-layout > main { background: var(--studio-surface); }
+.asset-filterbar,
+.asset-page-header,
+.integration-detail-header,
+.integration-actions,
+.provider-contract > header,
+.queue-inspector > header,
+.run-inspector > header,
+.table-toolbar,
+.run-list-toolbar,
+.run-detail > header,
+.run-overview,
+.settings-card > header,
+.collection-sidebar > header,
+.collection-sidebar > footer {
+  border-color: var(--studio-divider);
+  background: var(--studio-surface);
+}
+.asset-card,
+.provider-contract,
+.endpoint-list,
+.settings-callout,
+.plugin-empty,
+.task-state-card,
+.diagnosis-card,
+.safety-note,
+.risk-meter,
+.matrix-preview,
+.workflow-template-card,
+.draft-change,
+.workflow-version-list article,
+.workflow-archive-list article,
+.account-boundary-note {
+  border-color: var(--studio-border);
+  background: var(--studio-surface);
+  color: var(--studio-text);
+}
+.asset-card:hover,
+.workflow-template-card:hover {
+  border-color: var(--studio-border-strong);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, .3);
+}
+.asset-card.is-selected {
+  border-color: var(--studio-brand);
+  box-shadow: inset 3px 0 var(--studio-brand);
+}
+.workflow-version-list article.is-current {
+  border-color: color-mix(in srgb, var(--studio-focus) 46%, transparent);
+  box-shadow: inset 3px 0 var(--studio-focus);
+}
+
+.asset-card-copy strong,
+.provider-list strong,
+.integration-detail-header h2,
+.provider-contract article strong,
+.settings-field-row strong,
+.task-cell strong,
+.queue-inspector h2,
+.run-inspector h2,
+.run-list strong,
+.run-detail h2,
+.run-overview strong,
+.plugin-manager-layout > aside > button strong,
+.command-results strong,
+.workflow-template-card h3,
+.workflow-version-list strong,
+.workflow-archive-list strong { color: var(--studio-text); }
+.asset-card-copy p,
+.asset-card-copy footer,
+.provider-list small,
+.integration-detail-header p,
+.provider-contract article,
+.provider-contract footer,
+.settings-field-row small,
+.task-cell small,
+.run-list small,
+.run-detail > header p,
+.run-overview span,
+.run-overview small,
+.plugin-manager-layout > aside > button small,
+.command-results small,
+.workflow-template-card p,
+.workflow-template-card ol,
+.workflow-version-list small,
+.workflow-archive-list small { color: var(--studio-secondary); }
+
+.account-boundary-note {
+  border-color: color-mix(in srgb, var(--studio-warning) 30%, transparent);
+  background: var(--studio-warning-soft);
+}
+.account-boundary-note h2 { color: var(--studio-warning); }
+.account-boundary-note p { color: rgba(255, 255, 255, .66); }
+.account-boundary-note code {
+  border-color: color-mix(in srgb, var(--studio-warning) 26%, transparent);
+  background: var(--studio-surface);
+  color: var(--studio-warning);
+}
+.provider-contract article,
+.endpoint-list > div,
+.settings-field-row,
+.table-row,
+.event-table > div,
+.run-overview,
+.diagnostic-panel,
+.run-inspector section,
+.queue-inspector section { border-color: var(--studio-divider); }
+.provider-logo.kind-comfyui,
+.provider-hero-icon.kind-comfyui,
+.kind-plugin {
+  background: rgba(168, 200, 255, .12);
+  color: #a8c8ff;
+}
+.settings-callout,
+.safety-note {
+  border-color: color-mix(in srgb, var(--studio-success) 30%, transparent);
+  background: var(--studio-success-soft);
+  color: var(--studio-success);
+}
+.settings-callout span,
+.safety-note span,
+.diagnosis-card span { color: var(--studio-secondary); }
+/* .diagnosis-card 的警告色现在只随 .warning 修饰符出现（Layer 06）。 */
+.warning-note,
+.targeted-run-notice,
+.provider-import-warning {
+  border-color: color-mix(in srgb, var(--studio-warning) 30%, transparent);
+  background: var(--studio-warning-soft);
+  color: var(--studio-warning);
+}
+.progress-cell progress,
+.task-state-card progress,
+.storage-meter progress { accent-color: var(--studio-focus); }
+.performance-timeline > div > div,
+.risk-dial { background: var(--studio-hover); }
+.performance-timeline i.status-success { background: var(--studio-success); }
+.performance-timeline i.status-running { background: var(--studio-brand); }
+
+.modal-backdrop,
+.command-backdrop,
+.collection-editor-overlay {
+  background: var(--studio-scrim);
+  backdrop-filter: blur(2px);
+}
+.studio-modal,
+.command-palette,
+.collection-editor {
+  border-color: var(--studio-border-strong);
+  background: var(--studio-surface);
+  box-shadow: var(--studio-shadow);
+}
+.modal-header,
+.modal-footer,
+.command-palette > label,
+.command-palette > footer,
+.compare-toolbar,
+.compare-filter,
+.mask-toolbar,
+.compare-metadata,
+.draft-recovery-summary,
+.workflow-history-intro {
+  border-color: var(--studio-border);
+  background: var(--studio-surface);
+}
+.modal-header > button,
+.command-palette > label,
+.command-results > p,
+.command-palette > footer,
+.modal-footer > span { color: var(--studio-secondary); }
+.modal-header > button:hover {
+  background: var(--studio-hover);
+  color: var(--studio-text);
+}
+.command-palette > label { color: var(--studio-focus); }
+.matrix-layout > aside,
+.mask-workbench > aside { border-color: var(--studio-border); }
+.segmented-control,
+.compare-toolbar > div {
+  border-color: var(--studio-border-strong);
+  background: var(--studio-subtle);
+}
+.segmented-control button,
+.mask-toolbar > button,
+.compare-toolbar button { color: var(--studio-secondary); }
+.segmented-control button.is-active,
+.compare-toolbar button.is-active {
+  background: var(--studio-surface);
+  color: var(--studio-text);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .07);
+}
+.workflow-template-tags span,
+.provider-secret-hidden {
+  border-color: var(--studio-border);
+  background: var(--studio-subtle);
+  color: var(--studio-secondary);
+}
+.studio-toast {
+  border-color: var(--studio-border-strong);
+  background: var(--studio-glass-popover);
+  color: var(--studio-text);
+  box-shadow: var(--studio-shadow);
+}
+.studio-toast > span { color: var(--studio-focus); }
+
+@media (max-width: 1680px) {
+  .toolbar-overflow { display: block; }
+
+  .toolbar-actions .toolbar-button {
+    width: 30px;
+    min-width: 30px;
+    padding: 0;
+    gap: 0;
+    overflow: hidden;
+    font-size: 0;
+  }
+
+  .toolbar-actions .toolbar-button svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .toolbar-actions .toolbar-button:not(.local-image-toolbar):not(.save-workflow-button):not(.run-selected-button):not(.toolbar-overflow-trigger),
+  .toolbar-actions .toolbar-separator { display: none; }
+}
+
+@media (max-width: 900px) {
+  .studio-shell { grid-template-columns: var(--sidebar-w, 52px) minmax(0, 1fr); }
+  .activity-rail { padding-inline: 5px; }
+  .activity-rail button { justify-content: center; padding: 0; }
+  .activity-rail button span,
+  .rail-avatar { display: none; }
+  .activity-bottom .studio-account-row {
+    display: grid;
+    grid-template-columns: 30px;
+    min-height: 40px;
+    justify-content: center;
+    padding: 4px;
+  }
+  .studio-account-row .rail-avatar { display: grid; }
+  .studio-account-copy,
+  .studio-account-row > svg { display: none; }
+}
+
+/*
+ * AI-terminal material pass.
+ * Keep the Electron window opaque and build the CodexMonitor-style glass
+ * hierarchy inside the renderer: one translucent work surface, continuous
+ * tool panes, softly elevated controls, then the orange execution signal.
+ */
+
+.studio-app {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: transparent;
+}
+
+.studio-shell {
+  min-width: 0;
+  min-height: 0;
+  gap: 8px;
+  padding: 8px 8px 0 0;
+  background: transparent;
+}
+
+.activity-rail {
+  position: relative;
+  overflow: hidden;
+  border: 0;
+  border-right: 1px solid var(--studio-divider);
+  background: var(--studio-glass-sidebar);
+  box-shadow: none;
+  backdrop-filter: blur(30px) saturate(1.16);
+  -webkit-backdrop-filter: blur(30px) saturate(1.16);
+}
+
+.activity-main {
+  padding-top: 42px;
+}
+
+.activity-rail button {
+  border: 1px solid transparent;
+  border-radius: 10px;
+  transition: background 150ms ease, border-color 150ms ease, color 150ms ease, transform 150ms ease;
+}
+
+.activity-rail button:hover {
+  border-color: var(--studio-border);
+  background: rgba(255, 255, 255, .065);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .035);
+}
+
+.activity-rail button.is-active,
+.activity-rail button[aria-current="page"] {
+  border-color: rgba(100, 200, 255, .16);
+  background: var(--studio-selected);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .05), 0 6px 16px rgba(0, 0, 0, .12);
+}
+
+.rail-avatar {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  place-items: center;
+  margin: 0;
+  border: 1px solid var(--studio-border-strong);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .07);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .06);
+}
+
+.activity-bottom .studio-account-row {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) 15px;
+  min-height: 44px;
+  align-items: center;
+  gap: 8px;
+  border-color: transparent;
+  background: transparent;
+  padding: 0 8px;
+  text-align: left;
+}
+
+.activity-bottom .studio-account-row:hover {
+  border-color: rgba(255, 255, 255, .13);
+  background: rgba(255, 255, 255, .055);
+}
+
+.studio-account-copy {
+  display: block;
+  min-width: 0;
+}
+
+.studio-account-copy strong,
+.studio-account-copy small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.studio-account-copy strong {
+  color: var(--studio-text);
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.studio-account-copy small {
+  color: var(--studio-tertiary);
+  font-size: 10px;
+  margin-top: 2px;
+}
+
+.studio-account-copy small i {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--studio-success);
+  margin-right: 5px;
+  box-shadow: 0 0 0 2px var(--studio-success-soft);
+}
+
+.studio-account-copy small i.is-offline {
+  background: var(--studio-warning);
+  box-shadow: 0 0 0 2px var(--studio-warning-soft);
+}
+
+.page-viewport {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, .105);
+  border-bottom: 0;
+  border-radius: 18px 18px 0 0;
+  background: var(--studio-glass-workspace);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, .16), inset 0 1px 0 rgba(255, 255, 255, .055);
+  backdrop-filter: blur(32px) saturate(1.14);
+  -webkit-backdrop-filter: blur(32px) saturate(1.14);
+}
+
+.standard-page,
+.assets-page,
+.linear-view,
+.workspace-loading {
+  background: transparent;
+}
+
+.workflow-page {
+  overflow: hidden;
+  border-radius: inherit;
+  background: transparent;
+}
+
+.workflow-toolbar {
+  border-color: rgba(255, 255, 255, .075);
+  border-radius: 17px 17px 0 0;
+  background: var(--studio-glass-strip);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .035);
+  backdrop-filter: blur(18px) saturate(1.1);
+  -webkit-backdrop-filter: blur(18px) saturate(1.1);
+}
+
+.workflow-switcher select,
+.workflow-switcher > button,
+.toolbar-center,
+.toolbar-button,
+.icon-button,
+.secondary-button,
+.primary-button,
+.danger-button,
+.danger-ghost {
+  border-radius: 9px;
+}
+
+.workflow-switcher select { font-size: 11px; }
+
+.workflow-switcher select,
+.toolbar-center,
+.secondary-button,
+.workflow-switcher > button {
+  background: var(--studio-control-surface);
+  box-shadow: var(--studio-shadow-control);
+}
+
+.toolbar-center button {
+  border-radius: 7px;
+}
+
+.primary-button {
+  background: var(--studio-brand);
+  box-shadow: var(--studio-shadow-control);
+}
+
+.run-button {
+  border-color: color-mix(in srgb, var(--studio-focus) 32%, transparent);
+  background: rgba(100, 200, 255, .25);
+  box-shadow: 0 7px 20px rgba(77, 153, 255, .18);
+}
+
+.workflow-readiness {
+  margin: 0;
+  border: 0;
+  border-bottom: 1px solid var(--studio-divider);
+  border-radius: 0;
+  background: rgba(255, 255, 255, .018);
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.workflow-readiness-icon {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .05);
+}
+
+.workflow-readiness-details,
+.compatible-picker {
+  border-radius: 14px !important;
+  background: var(--studio-popover-surface) !important;
+  backdrop-filter: blur(28px) saturate(1.15);
+  -webkit-backdrop-filter: blur(28px) saturate(1.15);
+}
+
+.canvas-workbench {
+  gap: 0;
+  padding: 0;
+  background: transparent;
+}
+
+.node-library,
+.node-inspector,
+.canvas-surface {
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.node-library,
+.node-inspector {
+  background: var(--studio-panel-surface);
+}
+
+.node-library { border-right: 1px solid var(--studio-divider); }
+.node-inspector { border-left: 1px solid var(--studio-divider); }
+
+.panel-tabs,
+.inspector-header,
+.inspector-footer {
+  background: rgba(255, 255, 255, .018);
+}
+
+.search-field,
+.field input,
+.field textarea,
+.field select,
+.settings-field-row input,
+.settings-field-row select,
+.input-with-prefix,
+.compact-filter select {
+  border-radius: 9px;
+  background: var(--studio-control-surface);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .025);
+}
+
+.quick-node-grid button,
+.library-list > button,
+.outline-tree button {
+  border-radius: 9px;
+}
+
+.quick-node-grid button,
+.library-node-icon,
+.inspector-icon,
+.command-icon {
+  background: var(--studio-control-surface);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .035);
+}
+
+.canvas-surface,
+.canvas-surface .react-flow {
+  background-color: var(--studio-glass-canvas);
+  background-image: none;
+}
+
+.canvas-surface .react-flow__controls,
+.studio-minimap,
+.canvas-status-strip {
+  border-radius: 11px;
+  background: var(--studio-popover-surface) !important;
+  box-shadow: var(--studio-shadow), inset 0 1px 0 rgba(255, 255, 255, .06);
+  backdrop-filter: blur(28px) saturate(1.15);
+  -webkit-backdrop-filter: blur(28px) saturate(1.15);
+}
+
+.canvas-status-strip .strip-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid var(--studio-border);
+  border-radius: 7px;
+  background: var(--studio-control-surface);
+  color: var(--studio-secondary);
+  padding: 2px 7px;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.canvas-status-strip .strip-toggle:hover {
+  background: var(--studio-hover);
+  color: var(--studio-text);
+}
+
+.canvas-status-strip .strip-toggle.is-active {
+  border-color: color-mix(in srgb, var(--studio-focus) 32%, transparent);
+  background: var(--studio-selected);
+  color: var(--studio-text);
+}
+
+.studio-copilot-impact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--studio-border);
+  border-radius: 9px;
+  background: var(--studio-subtle);
+  color: var(--studio-secondary);
+  margin: 0 12px;
+  padding: 7px 9px;
+  font-size: 10.5px;
+}
+
+.studio-copilot-impact .impact-after { color: var(--studio-text); }
+.studio-copilot-impact .impact-tags { display: inline-flex; flex-wrap: wrap; gap: 4px; margin-left: auto; }
+.studio-copilot-impact em {
+  border: 1px solid var(--studio-border);
+  border-radius: 999px;
+  color: var(--studio-tertiary);
+  padding: 1px 7px;
+  font-size: 9.5px;
+  font-style: normal;
+  white-space: nowrap;
+}
+.studio-copilot-impact em.is-add { border-color: color-mix(in srgb, var(--studio-success) 36%, transparent); color: var(--studio-success); }
+.studio-copilot-impact em.is-remove { border-color: color-mix(in srgb, var(--studio-danger) 36%, transparent); color: var(--studio-danger); }
+
+.run-compare dd { color: var(--studio-text); }
+.run-compare-empty { color: var(--studio-tertiary); font-size: 11px; }
+
+.canvas-surface .react-flow__controls-button {
+  background: rgba(255, 255, 255, .035);
+}
+
+.workflow-node {
+  border-radius: 11px;
+  background: var(--studio-glass-node);
+  box-shadow: var(--studio-shadow-panel), inset 0 1px 0 rgba(255, 255, 255, .055);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.workflow-node.is-selected {
+  box-shadow: 0 0 0 2px rgba(100, 200, 255, .14), 0 20px 46px rgba(0, 0, 0, .42), inset 0 1px 0 rgba(255, 255, 255, .07);
+}
+
+.node-signal-cap {
+  right: 16px;
+  left: 16px;
+  border-radius: 999px;
+  box-shadow: none;
+}
+
+.workflow-node.status-running .node-signal-cap {
+  box-shadow: 0 0 12px color-mix(in srgb, var(--studio-brand) 24%, transparent);
+}
+
+.node-kind-icon,
+.node-mini-action {
+  border-radius: 8px;
+}
+
+.node-port-grid,
+.node-footer,
+.project-image-node-meta,
+.result-image-node-meta {
+  background: rgba(255, 255, 255, .022);
+}
+
+
+.bottom-dock,
+.bottom-dock-collapsed {
+  overflow: hidden;
+  margin: 0;
+  border: 0;
+  border-top: 1px solid var(--studio-divider);
+  border-radius: 0;
+  background: var(--studio-glass-strip);
+  box-shadow: 0 -12px 30px rgba(0, 0, 0, .18), inset 0 1px 0 rgba(255, 255, 255, .035);
+  backdrop-filter: blur(18px) saturate(1.14);
+  -webkit-backdrop-filter: blur(18px) saturate(1.14);
+}
+
+.bottom-dock > header,
+.bottom-dock-collapsed,
+.bottom-content {
+  background: rgba(255, 255, 255, .012);
+}
+
+.standard-page {
+  position: relative;
+}
+
+.queue-layout,
+.runs-layout,
+.integrations-layout,
+.settings-nav,
+.settings-card,
+.collection-editor,
+.plugin-manager,
+.workflow-history-layout > section,
+.workflow-history-side > section,
+.asset-card,
+.provider-contract,
+.endpoint-list,
+.settings-callout,
+.plugin-empty,
+.task-state-card,
+.diagnosis-card,
+.safety-note,
+.risk-meter,
+.matrix-preview,
+.workflow-template-card,
+.draft-change,
+.workflow-version-list article,
+.workflow-archive-list article,
+.account-boundary-note {
+  border-color: var(--studio-border);
+  border-radius: 14px;
+  background: var(--studio-glass-inspector);
+  box-shadow: var(--studio-shadow-panel);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* 同上：队列/记录四个面板的模糊与底色交给 Layer 06 分主次。 */
+.collection-sidebar,
+.asset-inspector,
+.provider-list,
+.plugin-security-panel,
+.plugin-manager-layout > aside,
+.matrix-layout > aside,
+.mask-workbench > aside {
+  background: var(--studio-glass-inspector);
+  backdrop-filter: blur(24px) saturate(1.1);
+  -webkit-backdrop-filter: blur(24px) saturate(1.1);
+}
+
+.asset-browser,
+.integration-detail,
+.settings-content,
+.plugin-manager-layout > main,
+.asset-filterbar,
+.asset-page-header,
+.integration-detail-header,
+.integration-actions,
+.provider-contract > header,
+.queue-inspector > header,
+.run-inspector > header,
+.table-toolbar,
+.run-list-toolbar,
+.run-detail > header,
+.run-overview,
+.settings-card > header,
+.collection-sidebar > header,
+.collection-sidebar > footer {
+  background: rgba(255, 255, 255, .018);
+}
+
+.provider-list > button,
+.run-list > button,
+.settings-nav button,
+.plugin-manager-layout > aside > button,
+.collection-sidebar section > button,
+.collection-sidebar-row > button:first-child,
+.table-row {
+  border-radius: 10px;
+}
+
+.modal-backdrop,
+.command-backdrop,
+.collection-editor-overlay {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.studio-modal,
+.command-palette,
+.collection-editor,
+.studio-toast {
+  border-radius: var(--studio-radius-popover);
+  background: var(--studio-popover-surface);
+  box-shadow: var(--studio-shadow);
+  backdrop-filter: blur(28px) saturate(1.15);
+  -webkit-backdrop-filter: blur(28px) saturate(1.15);
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .activity-rail,
+  .page-viewport,
+  .node-library,
+  .node-inspector,
+  .canvas-surface,
+  .bottom-dock,
+  .bottom-dock-collapsed,
+  .studio-modal,
+  .command-palette,
+  .collection-editor,
+  .studio-toast {
+    background: rgba(14, 18, 26, .96);
+  }
+}
+
+@media (max-width: 900px) {
+  .studio-shell {
+    gap: 6px;
+    padding: 6px 6px 0 0;
+  }
+
+  .page-viewport { border-radius: 14px 14px 0 0; }
+
+  .node-inspector {
+    background: var(--studio-popover-surface);
+    box-shadow: -10px 0 28px rgba(0, 0, 0, .35);
+  }
+}
+
+/* Match the host application's compact rail and keep the dense workflow
+ * toolbar inside its own column instead of letting actions overlap the view
+ * switcher at laptop widths. */
+@media (max-width: 1500px) {
+  .toolbar-actions > .toolbar-optional { display: none; }
+  .toolbar-overflow { display: block; }
+  .toolbar-actions > .toolbar-button {
+    width: 30px;
+    min-width: 30px;
+    gap: 0;
+    overflow: hidden;
+    padding: 0;
+    font-size: 0;
+  }
+
+  .toolbar-actions > .toolbar-button svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .toolbar-separator { margin-inline: 1px; }
+}
+
+@media (max-width: 1280px) {
+  .workflow-toolbar {
+    grid-template-columns: minmax(120px, 1fr) auto max-content;
+    column-gap: 6px;
+    padding-inline: 8px;
+  }
+
+  .toolbar-actions .run-button {
+    margin-left: 2px;
+    padding-inline: 10px;
+  }
+
+  .toolbar-actions .run-button kbd { display: none; }
+
+  .toolbar-account-route { width: 300px; min-width: 270px; }
+}
+
+@media (max-width: 1039px) {
+  .studio-shell {
+    grid-template-columns: var(--sidebar-w, 52px) minmax(0, 1fr);
+    gap: 8px;
+    padding: 8px 8px 0 0;
+  }
+
+  .activity-rail { padding-inline: 5px; }
+  .activity-main { padding-top: 138px; }
+  .activity-rail button { justify-content: center; padding-inline: 0; }
+  .activity-rail button span,
+  .rail-avatar { display: none; }
+  .activity-bottom .studio-account-row {
+    display: grid;
+    grid-template-columns: 30px;
+    min-height: 40px;
+    justify-content: center;
+    padding: 4px;
+  }
+  .studio-account-row .rail-avatar { display: grid; }
+  .studio-account-copy,
+  .studio-account-row > svg { display: none; }
+  .activity-rail button em {
+    top: 3px;
+    right: 2px;
+  }
+
+  .page-viewport { border-radius: 16px 16px 0 0; }
+
+  .toolbar-actions > :not(.run-button):not(.run-selected-button):not(.toolbar-account-route):not(.toolbar-overflow) { display: none; }
+  .toolbar-account-route {
+    width: 330px;
+    min-width: 300px;
+    grid-template-columns: minmax(104px, .72fr) minmax(158px, 1.28fr) 28px;
+  }
+}
+
+@media (max-width: 900px) {
+  .studio-shell {
+    gap: 6px;
+    padding: 6px 6px 0 0;
+  }
+
+  .page-viewport { border-radius: 14px 14px 0 0; }
+
+  .node-inspector {
+    top: 78px;
+    bottom: 44px;
+    background: var(--studio-glass-popover);
+    box-shadow: -10px 0 28px rgba(0, 0, 0, .35);
+  }
+
+  .toolbar-actions > :not(.run-button):not(.run-selected-button):not(.toolbar-account-route):not(.toolbar-overflow) { display: none; }
+  .toolbar-account-route {
+    width: 300px;
+    min-width: 280px;
+    grid-template-columns: minmax(96px, .75fr) minmax(148px, 1.25fr) 28px;
+  }
+}
+
+@media (max-width: 1199px) {
+  .standard-page { padding: 20px; }
+
+  .assets-page {
+    position: relative;
+    grid-template-columns: 170px minmax(0, 1fr) 300px;
+  }
+
+  .asset-inspector {
+    position: static;
+    width: auto;
+    box-shadow: none;
+  }
+
+  .asset-filterbar,
+  .batch-actionbar { flex-wrap: wrap; }
+  .asset-filterbar .search-field {
+    width: auto;
+    flex: 1 1 220px;
+  }
+  .asset-filter-spacer { display: none; }
+
+  /* 队列/记录的窄屏行为移到 Layer 06 的容器查询：检查器改为堆叠展示，
+     不再 display:none 整列删除请求状态、费用与恢复按钮。 */
+
+  .integrations-layout { grid-template-columns: 180px minmax(0, 1fr); }
+  .plugin-security-panel { display: none; }
+}
+
+@media (max-width: 1039px) {
+  .standard-page { padding: 16px; }
+  .page-header { margin-bottom: 14px; }
+  .settings-layout {
+    grid-template-columns: 168px minmax(0, 1fr);
+    gap: 12px;
+  }
+}
+
+/* Workflow labels remain readable at the canvas zoom level used by the host. */
+.studio-minimap {
+  width: 180px !important;
+  height: 110px !important;
+  max-width: 24%;
+  max-height: 110px;
+}
+
+.canvas-status-strip,
+.compatible-empty,
+.compatible-picker footer,
+.edge-label {
+  font-size: 10px;
+}
+
+.workflow-node { width: 292px; }
+.node-header {
+  min-height: 49px;
+  padding: 7px 9px;
+}
+.node-title-block strong { font-size: 12px; }
+.node-title-block small {
+  font-size: 10.5px;
+  letter-spacing: 0;
+}
+.node-port-grid { padding-block: 6px; }
+.node-port-row {
+  min-height: 27px;
+  padding-inline: 10px;
+  font-size: 10.5px;
+}
+.node-port-row small { font-size: 10px; }
+.node-parameter-summary { padding: 6px 9px; }
+.node-parameter-summary div {
+  grid-template-columns: 72px minmax(0, 1fr);
+  min-height: 25px;
+}
+.node-parameter-summary dt,
+.node-parameter-summary dd { font-size: 10.5px; }
+.project-image-node-preview > button small,
+.result-image-node-preview > button small,
+.result-image-node-meta,
+.result-image-node-meta button,
+.project-image-node-meta strong,
+.project-image-node-meta small,
+.node-annotation,
+.node-metrics,
+.workflow-frame > p,
+.workflow-frame > small,
+.exposure-stage small { font-size: 10px; }
+.status-pill {
+  min-height: 24px;
+  font-size: 10.5px;
+}
+
+.inspector-header p,
+.inspector-state-row > span:not(.status-pill),
+.inspector-section h3,
+.project-image-inspector-preview strong,
+.project-image-inspector-preview small,
+.project-image-inspector-empty small,
+.project-image-path span,
+.project-image-path code,
+.project-image-actions button,
+.field > span em,
+.field small,
+.field-help,
+.section-copy,
+.muted-copy,
+.size-custom-entry > span,
+.toggle-row small,
+.debug-output-editor > small,
+.port-inspector-list code,
+.inspector-section-title small {
+  font-size: 10px;
+  letter-spacing: 0;
+}
+
+/* Canvas-first embedded layout: use the same continuous shell as Chat/Agent. */
+.studio-shell {
+  gap: 0;
+  padding: 0;
+  background: transparent;
+}
+
+.activity-rail {
+  border: 0;
+  border-right: 1px solid var(--studio-divider);
+  background: var(--studio-glass-sidebar);
+  box-shadow: none;
+  backdrop-filter: blur(30px) saturate(1.16);
+  -webkit-backdrop-filter: blur(30px) saturate(1.16);
+}
+
+.activity-rail button {
+  border-radius: 6px;
+  transform: none;
+}
+
+.page-viewport {
+  container: studio-page / inline-size;
+  border: 0;
+  border-radius: 0;
+  background: var(--studio-glass-workspace);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, .16), inset 0 1px 0 rgba(255, 255, 255, .055);
+  backdrop-filter: blur(32px) saturate(1.14);
+  -webkit-backdrop-filter: blur(32px) saturate(1.14);
+}
+
+.workflow-page,
+.workflow-toolbar {
+  border-radius: 0;
+}
+
+.workflow-toolbar {
+  background: var(--studio-glass-strip);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .035);
+  backdrop-filter: blur(18px) saturate(1.1);
+  -webkit-backdrop-filter: blur(18px) saturate(1.1);
+}
+
+/* Native Windows option popups ignore the shadow theme, so group/model
+ * choices use this in-shadow listbox in both the toolbar and inspector. */
+.studio-select {
+  position: relative;
+  display: grid;
+  width: 100%;
+  min-width: 0;
+}
+
+.studio-select.is-open {
+  z-index: 180;
+}
+
+.studio-select-trigger {
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  min-height: 31px;
+  grid-template-columns: minmax(0, 1fr) 14px;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--studio-border-strong);
+  border-radius: 8px;
+  background: var(--studio-control-surface);
+  color: var(--studio-text);
+  padding: 0 8px;
+  text-align: left;
+}
+
+.studio-select-trigger > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.studio-select-trigger > svg {
+  color: var(--studio-tertiary);
+  transform: rotate(90deg);
+  transition: transform 140ms ease;
+}
+
+.studio-select.is-open .studio-select-trigger > svg { transform: rotate(-90deg); }
+.studio-select-trigger:hover:not(:disabled),
+.studio-select-trigger[aria-expanded="true"] {
+  border-color: var(--studio-border-strong);
+  background: var(--studio-control-hover);
+}
+.studio-select-trigger:focus-visible {
+  border-color: var(--studio-focus);
+  outline: 2px solid var(--studio-focus-ring);
+  outline-offset: 0;
+}
+.studio-select-trigger[aria-invalid="true"] {
+  border-color: color-mix(in srgb, var(--studio-danger) 72%, transparent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--studio-danger) 10%, transparent);
+}
+
+.studio-select-listbox {
+  position: fixed;
+  z-index: 180;
+  inset: auto;
+  display: grid;
+  width: 100%;
+  min-width: min(180px, calc(100vw - 24px));
+  max-height: min(170px, 32dvh);
+  overflow-y: auto;
+  gap: 2px;
+  border: 1px solid var(--studio-border-strong);
+  border-radius: 10px;
+  background: var(--studio-listbox-surface);
+  padding: 4px;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, .42), 0 4px 12px rgba(0, 0, 0, .24), inset 0 1px 0 rgba(255, 255, 255, .055);
+  backdrop-filter: blur(28px) saturate(1.15);
+  -webkit-backdrop-filter: blur(28px) saturate(1.15);
+  margin: 0;
+}
+
+.studio-select-listbox:popover-open {
+  display: grid;
+  color-scheme: dark;
+}
+
+.studio-select-listbox::backdrop {
+  background: transparent;
+}
+
+.studio-select-option-block {
+  display: grid;
+  min-width: 0;
+  gap: 2px;
+}
+
+.studio-select-group-label {
+  overflow: hidden;
+  color: var(--studio-tertiary);
+  padding: 7px 8px 3px;
+  font-size: 9px;
+  font-weight: 650;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.studio-select-listbox [role="option"] {
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  min-height: 31px;
+  grid-template-columns: minmax(0, 1fr) 14px;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--studio-secondary);
+  padding: 5px 7px;
+  text-align: left;
+}
+
+.studio-select-listbox [role="option"] > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.studio-select-listbox [role="option"]:hover:not(:disabled),
+.studio-select-listbox [role="option"]:focus-visible,
+.studio-select-listbox [role="option"].is-selected {
+  border-color: color-mix(in srgb, var(--studio-focus) 20%, transparent);
+  outline: none;
+  background: var(--studio-option-hover);
+  color: var(--studio-text);
+}
+
+.studio-select-listbox [role="option"]:disabled {
+  color: rgba(255, 255, 255, .3);
+}
+
+.workflow-switcher .workflow-select {
+  width: min(176px, calc(100% - 34px));
+  flex: 1 1 176px;
+}
+
+.workflow-switcher .workflow-select .studio-select-trigger {
+  min-height: 25px;
+  border-radius: 7px;
+  font-size: 10.5px;
+}
+
+.compact-filter .studio-select {
+  width: auto;
+  min-width: 82px;
+}
+
+.compact-filter .studio-select-trigger {
+  min-height: 27px;
+  border: 0;
+  background: transparent;
+  padding-inline: 3px;
+  font-size: 9px;
+}
+
+.compact-filter .studio-select-listbox {
+  min-width: 150px;
+}
+
+.compare-toolbar > label .studio-select {
+  width: min(190px, 24vw);
+}
+
+.compare-toolbar > label .studio-select-trigger {
+  min-height: 27px;
+  border-radius: 6px;
+  font-size: 9px;
+}
+
+.settings-field-row > .studio-select {
+  width: min(180px, 46%);
+}
+
+.studio-route-capability-field .studio-select-trigger {
+  min-height: 30px;
+  border-radius: 7px;
+  font-size: 10px;
+}
+
+.studio-route-capability-field .studio-select-listbox {
+  max-height: min(142px, 28dvh);
+  font-size: 10px;
+}
+
+.account-group-field > label {
+  color: var(--studio-secondary);
+  font-size: 10px;
+}
+
+.account-group-input {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: minmax(0, 1fr) 32px;
+  align-items: start;
+  gap: 5px;
+}
+
+.account-group-input > button {
+  display: grid;
+  width: 32px;
+  min-width: 32px;
+  min-height: 31px;
+  place-items: center;
+  border: 1px solid var(--studio-border-strong);
+  border-radius: 8px;
+  background: var(--studio-subtle);
+  color: var(--studio-secondary);
+}
+
+.account-group-input > button:hover:not(:disabled) {
+  background: var(--studio-hover);
+  color: var(--studio-text);
+}
+
+/* The library starts closed and both utility panes can be reclaimed without
+ * changing the workflow document. */
+.canvas-workbench {
+  position: relative;
+  --library-pane-width: clamp(148px, 10vw, 164px);
+  --inspector-pane-width: clamp(214px, 15vw, 236px);
+  --library-column: 0px;
+  --inspector-column: 0px;
+  grid-template-columns: var(--library-column) minmax(0, 1fr) var(--inspector-column);
+}
+
+.canvas-workbench.has-library { --library-column: var(--library-pane-width); }
+.canvas-workbench.has-inspector { --inspector-column: var(--inspector-pane-width); }
+.canvas-workbench > .node-library { grid-column: 1; }
+.canvas-workbench > .canvas-surface { grid-column: 2; }
+.canvas-workbench > .node-inspector { grid-column: 3; }
+
+.canvas-pane-toggle {
+  position: absolute;
+  z-index: 48;
+  top: 9px;
+  display: grid;
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+  min-height: 30px;
+  place-items: center;
+  border: 1px solid var(--studio-border-strong);
+  border-radius: 8px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, .075), transparent 54%),
+    rgba(10, 14, 22, .6);
+  color: var(--studio-secondary);
+  padding: 0;
+  box-shadow: var(--studio-shadow-control);
+  backdrop-filter: blur(18px) saturate(1.2);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+  transition: left 160ms ease, right 160ms ease, background 120ms ease, color 120ms ease;
+}
+
+.canvas-pane-toggle:hover,
+.canvas-pane-toggle[aria-pressed="true"] {
+  border-color: color-mix(in srgb, var(--studio-focus) 30%, transparent);
+  background: rgba(100, 200, 255, .14);
+  color: var(--studio-text);
+}
+
+.canvas-pane-toggle svg {
+  transition: transform 140ms ease;
+}
+
+.canvas-pane-toggle-library { left: calc(var(--library-column) + 10px); }
+.canvas-pane-toggle-inspector { right: calc(var(--inspector-column) + 10px); }
+.canvas-status-strip {
+  border-color: rgba(167, 197, 221, .16);
+  margin-inline: 0;
+}
+
+.studio-route-popover {
+  max-height: calc(100dvh - 72px);
+  overflow-y: auto;
+}
+
+.collection-sidebar > header > div,
+.asset-inspector > header > div:last-child {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.asset-compact-toolbar,
+.asset-compact-close,
+.asset-compact-scrim {
+  display: none;
+}
+
+.command-palette {
+  display: flex;
+  max-height: calc(100dvh - 24px);
+  flex-direction: column;
+}
+
+.command-results {
+  min-height: 0;
+  flex: 1;
+}
+
+@container studio-page (max-width: 1050px) {
+  .workflow-toolbar {
+    grid-template-columns: minmax(88px, 1fr) auto max-content;
+    column-gap: 5px;
+    padding-inline: 8px;
+  }
+
+  .toolbar-actions { gap: 2px; }
+  .toolbar-actions > .run-selected-button { display: none; }
+  .toolbar-center button { padding-inline: 7px; }
+  .toolbar-account-route {
+    width: clamp(238px, 32cqw, 280px);
+    min-width: 0;
+    grid-template-columns: minmax(74px, .76fr) minmax(112px, 1.24fr) 28px;
+  }
+  .toolbar-account-route.is-group-only {
+    width: min(210px, 28cqw);
+    min-width: 168px;
+    grid-template-columns: minmax(112px, 1fr) 28px;
+  }
+
+  .canvas-workbench,
+  .canvas-workbench.has-library,
+  .canvas-workbench.has-inspector {
+    grid-template-columns: minmax(0, 1fr);
+    isolation: isolate;
+  }
+
+  .canvas-workbench > .canvas-surface { grid-column: 1; }
+  .canvas-workbench > .node-library,
+  .canvas-workbench > .node-inspector {
+    position: absolute;
+    z-index: 40;
+    top: 0;
+    bottom: 0;
+    width: auto;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, .42);
+  }
+  .canvas-workbench > .node-library {
+    right: auto;
+    left: 0;
+    width: min(240px, calc(100cqw - 56px));
+    border-right: 1px solid var(--studio-border-strong);
+    background: var(--studio-glass-popover);
+  }
+  .canvas-workbench > .node-inspector {
+    right: 0;
+    left: auto;
+    width: min(292px, calc(100cqw - 56px));
+    border-left: 1px solid var(--studio-border-strong);
+    background: var(--studio-glass-popover);
+  }
+  .canvas-workbench.has-library .canvas-pane-toggle-library { left: min(248px, calc(100cqw - 48px)); }
+  .canvas-workbench.has-inspector .canvas-pane-toggle-inspector { right: min(300px, calc(100cqw - 48px)); }
+  .studio-minimap { display: none; }
+
+  .linear-view {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .linear-preview-panel {
+    min-height: auto;
+    border-top: 1px solid var(--studio-divider);
+    border-left: 0;
+  }
+}
+
+@container studio-page (max-width: 760px) {
+  .workflow-toolbar {
+    grid-template-columns: minmax(68px, 1fr) auto max-content;
+    padding-inline: 6px;
+  }
+  .workflow-breadcrumbs { display: none; }
+  .workflow-switcher select { width: calc(100% - 28px); }
+  .toolbar-center button {
+    width: 30px;
+    min-width: 30px;
+    gap: 0;
+    padding: 0;
+    font-size: 0;
+  }
+  .toolbar-account-route {
+    width: min(222px, 42cqw);
+    min-width: 182px;
+    grid-template-columns: minmax(58px, .72fr) minmax(88px, 1.28fr) 28px;
+  }
+  .toolbar-account-route.is-group-only {
+    width: min(184px, 34cqw);
+    min-width: 154px;
+    grid-template-columns: minmax(108px, 1fr) 28px;
+  }
+  .toolbar-actions .run-button {
+    width: 32px;
+    min-width: 32px;
+    gap: 0;
+    margin-left: 1px;
+    padding: 0;
+    font-size: 0;
+  }
+  .toolbar-actions .run-button svg { width: 15px; height: 15px; }
+
+  .settings-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .settings-nav {
+    position: static;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .settings-nav button {
+    min-width: 0;
+  }
+}
+
+@container studio-page (max-width: 900px) {
+  .assets-page {
+    position: relative;
+    isolation: isolate;
+    grid-template-columns: minmax(0, 1fr);
+    overflow: hidden;
+  }
+
+  .asset-browser {
+    grid-column: 1;
+    min-width: 0;
+    padding: 12px;
+  }
+
+  .asset-compact-toolbar {
+    position: sticky;
+    z-index: 18;
+    top: -12px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+    margin: 0 0 8px;
+    border-bottom: 1px solid var(--studio-divider);
+    background: var(--studio-glass-strip);
+    padding: 8px 0;
+    backdrop-filter: blur(18px) saturate(1.1);
+    -webkit-backdrop-filter: blur(18px) saturate(1.1);
+  }
+
+  .asset-compact-toolbar button {
+    display: inline-flex;
+    min-width: 0;
+    min-height: 32px;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border: 1px solid var(--studio-border-strong);
+    border-radius: 8px;
+    background: var(--studio-glass-control);
+    color: var(--studio-secondary);
+    padding-inline: 8px;
+  }
+
+  .asset-compact-toolbar button[aria-expanded="true"] {
+    border-color: color-mix(in srgb, var(--studio-focus) 30%, transparent);
+    background: var(--studio-selected);
+    color: var(--studio-text);
+  }
+
+  .asset-page-header {
+    min-height: 0;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    margin-bottom: 10px;
+  }
+
+  .asset-page-header h1 { font-size: 22px; }
+  .asset-page-header p { margin-top: 4px; }
+  .asset-page-header .page-header-actions { margin-left: auto; }
+  .asset-filterbar { top: 36px; }
+  .asset-filterbar .search-field { flex-basis: 100%; }
+  .asset-density-control { display: none; }
+
+  .asset-compact-scrim {
+    position: absolute;
+    z-index: 80;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: 0;
+    background: rgba(2, 5, 10, .58);
+    padding: 0;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+  }
+
+  .assets-page > .collection-sidebar,
+  .assets-page > .asset-inspector {
+    position: absolute;
+    z-index: 90;
+    top: 0;
+    bottom: 0;
+    width: min(300px, calc(100cqw - 44px));
+    visibility: hidden;
+    pointer-events: none;
+    background: var(--studio-glass-popover);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, .46);
+    opacity: 0;
+    transition: transform 160ms ease, opacity 140ms ease, visibility 0s linear 160ms;
+  }
+
+  .assets-page > .collection-sidebar {
+    right: auto;
+    left: 0;
+    border-right: 1px solid var(--studio-border-strong);
+    transform: translateX(-18px);
+  }
+
+  .assets-page > .asset-inspector {
+    right: 0;
+    left: auto;
+    width: min(330px, calc(100cqw - 44px));
+    border-left: 1px solid var(--studio-border-strong);
+    transform: translateX(18px);
+  }
+
+  .assets-page.is-collection-open > .collection-sidebar,
+  .assets-page.is-inspector-open > .asset-inspector {
+    visibility: visible;
+    pointer-events: auto;
+    opacity: 1;
+    transform: translateX(0);
+    transition-delay: 0s;
+  }
+
+  .asset-compact-close {
+    display: inline-grid;
+  }
+
+  /* 记录页的堆叠与列表带状化由 Layer 06 的容器查询接管（1100/820 两级）。 */
+
+  .run-detail > header {
+    min-width: 0;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .run-detail > header > div:first-child {
+    min-width: 0;
+  }
+
+  .run-detail > header .eyebrow,
+  .run-detail > header h2,
+  .run-detail > header p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* .run-overview 已在 Layer 06 去卡片化，窄屏折行同样由 Layer 06 提供。 */
+
+  .diagnostic-panel-heading {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .diagnostic-panel-heading .exposure-rail {
+    width: min(260px, 100%);
+  }
+}
+
+@container studio-page (max-width: 560px) {
+  .workflow-context { display: none; }
+  .workflow-toolbar { grid-template-columns: auto minmax(0, 1fr); }
+  .toolbar-actions { justify-self: end; }
+  .toolbar-account-route { width: min(214px, 52cqw); }
+  .asset-grid { grid-template-columns: minmax(0, 1fr); }
+  .studio-route-group-popover {
+    right: 0;
+    left: auto;
+  }
+  /* 时间线窄屏列宽由 Layer 06 提供（第三列需容纳“· NN%”）。 */
+  .event-table > div {
+    grid-template-columns: 68px 36px minmax(0, 1fr);
+    gap: 5px;
+    padding-block: 5px;
+  }
+  .event-table p {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 1039px) {
+  .activity-rail { padding-inline: 5px; }
+}
+
+@media (max-height: 620px) {
+  .activity-rail {
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-block: 3px;
+  }
+  .activity-main,
+  .activity-bottom { gap: 1px; }
+  .activity-rail button { min-height: 28px; }
+  .activity-bottom .studio-account-row { min-height: 30px; }
+  .bottom-dock {
+    height: 88px;
+    grid-template-rows: 28px minmax(0, 1fr);
+  }
+  .bottom-dock > header { min-height: 28px; }
+  .bottom-content { padding-block: 5px; }
+  .live-run-summary small { -webkit-line-clamp: 1; }
+  .modal-backdrop,
+  .collection-editor-overlay {
+    overflow-y: auto;
+    align-items: start;
+    padding: 8px;
+  }
+  .command-backdrop { padding-top: 8px; }
+  .studio-modal,
+  .command-palette,
+  .collection-editor {
+    max-height: calc(100dvh - 16px);
+  }
+  .compare-stage,
+  .mask-image { min-height: 220px; }
+}
+
+/* Chat/Agent parity: these material roles override Studio's legacy standalone colors. */
+.studio-app,
+.studio-shell,
+.page-viewport,
+.workflow-page,
+.canvas-workbench,
+.standard-page,
+.assets-page,
+.queue-page,
+.runs-page,
+.settings-page,
+.linear-view,
+.run-detail {
+  font-family: var(--studio-font-ui);
+  background: transparent;
+}
+
+.workflow-toolbar,
+.workflow-readiness,
+.bottom-dock,
+.bottom-dock-collapsed,
+.asset-filterbar,
+.run-list-toolbar,
+.modal-footer,
+.workflow-history-intro,
+.matrix-cost-panel,
+.integration-actions {
+  border-color: var(--studio-divider);
+  background: var(--studio-glass-strip);
+  backdrop-filter: blur(18px) saturate(1.1);
+  -webkit-backdrop-filter: blur(18px) saturate(1.1);
+}
+
+/* 这是队列/记录四个面板此前真正生效的最后一道声明；材质已移交 Layer 06。 */
+.node-library,
+.node-inspector,
+.asset-inspector,
+.collection-sidebar,
+.provider-list,
+.integration-detail,
+.plugin-security-panel,
+.linear-preview-panel,
+.settings-nav {
+  border-color: var(--studio-border);
+  background: var(--studio-glass-inspector);
+  backdrop-filter: blur(24px) saturate(1.08);
+  -webkit-backdrop-filter: blur(24px) saturate(1.08);
+}
+
+/* .run-overview 与 .performance-timeline > div 的卡片外壳由 Layer 06 移除：
+   已有边框的面板里再嵌两层边框卡片，是概览与时间线互相打架的根源。 */
+.workflow-node,
+.workflow-frame,
+.workflow-note,
+.asset-card,
+.summary-card,
+.history-strip article,
+.preset-list article,
+.provider-contract,
+.plugin-summary,
+.settings-callout,
+.matrix-preview,
+.risk-meter,
+.workflow-template-card {
+  border-color: var(--studio-border);
+  border-radius: var(--studio-radius-control);
+  background: var(--studio-surface);
+  box-shadow: inset 0 1px rgba(255, 255, 255, .025);
+}
+
+.studio-route-popover,
+.toolbar-overflow-menu,
+.workflow-readiness-details,
+.compatible-picker,
+.canvas-selection-toolbar,
+.command-palette,
+.studio-modal,
+.collection-editor,
+.compare-popover {
+  border-color: var(--studio-border-strong) !important;
+  border-radius: var(--studio-radius-popover);
+  background: var(--studio-popover-surface) !important;
+  box-shadow: var(--studio-shadow);
+  backdrop-filter: blur(28px) saturate(1.16);
+  -webkit-backdrop-filter: blur(28px) saturate(1.16);
+}
+
+.workflow-switcher > button,
+.toolbar-center,
+.icon-button,
+.toolbar-button,
+.secondary-button,
+.studio-route-anchor,
+.studio-route-refresh,
+.search-field,
+.field input,
+.field textarea,
+.field select,
+.input-with-prefix,
+.compact-filter,
+.asset-filterbar > button,
+.table-toolbar > button,
+.run-list-toolbar > button,
+.style-chip-row button,
+.tag-row button {
+  border-radius: var(--studio-radius-control);
+}
+
+.workflow-switcher > button,
+.toolbar-center,
+.secondary-button,
+.studio-route-anchor,
+.studio-route-refresh,
+.search-field,
+.field input,
+.field textarea,
+.field select,
+.input-with-prefix,
+.compact-filter,
+.asset-filterbar > button,
+.table-toolbar > button,
+.run-list-toolbar > button,
+.style-chip-row button,
+.tag-row button {
+  border-color: var(--studio-border-strong);
+  background: var(--studio-control-surface);
+  color: var(--studio-secondary);
+}
+
+.workflow-node.is-selected,
+.workflow-frame.is-selected,
+.workflow-note.is-selected,
+.asset-card.is-selected {
+  border-color: color-mix(in srgb, var(--studio-focus) 58%, transparent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--studio-focus) 12%, transparent), var(--studio-shadow-panel);
+}
+
+.workflow-node.status-running {
+  border-color: color-mix(in srgb, var(--studio-brand) 58%, transparent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--studio-brand) 12%, transparent), 0 14px 34px rgba(0, 0, 0, .3);
+}
+
+.workflow-node.status-running .node-signal-cap {
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--studio-brand), #ffc1b4, var(--studio-brand), transparent);
+  background-size: 220% 100%;
+  animation: studio-run-scan 1.6s linear infinite;
+}
+
+@keyframes studio-run-scan {
+  from { background-position: 120% 0; }
+  to { background-position: -120% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .workflow-node.status-running .node-signal-cap { animation: none; }
+}
+
+@container (max-width: 620px) {
+  .canvas-selection-toolbar { max-width: calc(100% - 28px); }
+  .canvas-selection-toolbar > span:first-child,
+  .canvas-selection-toolbar .selection-auto-layout span { display: none; }
+}

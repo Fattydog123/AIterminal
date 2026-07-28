@@ -1,0 +1,102 @@
+/* Layer 01: Studio visual tokens. StudioWorkspace rewrites this owner to :host. */
+:root {
+  color-scheme: dark;
+  font-family: "Segoe UI Variable Text", "Noto Sans SC", "Microsoft YaHei UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: geometricPrecision;
+
+  /*
+   * Studio intentionally inherits the Chat/Agent palette through the Shadow
+   * host. Fallbacks keep its standalone renderer dark as well.
+   */
+  --studio-canvas: var(--canvas, #070a11);
+  --studio-sidebar: var(--native-glass-sidebar, rgba(8, 11, 17, .34));
+  --studio-surface: var(--cm-surface-panel, rgba(255, 255, 255, .031));
+  --studio-surface-strong: var(--cm-surface-panel-strong, rgba(255, 255, 255, .035));
+  --studio-surface-soft: var(--cm-surface-panel-soft, rgba(255, 255, 255, .025));
+  --studio-subtle: var(--surface-subtle, rgba(255, 255, 255, .045));
+  --studio-hover: var(--surface-hover, rgba(255, 255, 255, .085));
+  --studio-selected: var(--surface-selected, rgba(100, 200, 255, .15));
+  --studio-border: var(--border, rgba(255, 255, 255, .09));
+  --studio-border-strong: var(--border-strong, rgba(255, 255, 255, .16));
+  --studio-divider: var(--divider, rgba(255, 255, 255, .075));
+  --studio-text: var(--text, #e6e7ea);
+  --studio-secondary: var(--text-secondary, rgba(255, 255, 255, .73));
+  --studio-tertiary: var(--text-tertiary, rgba(255, 255, 255, .48));
+  --studio-brand: var(--brand, #ff785c);
+  --studio-text-inverse: var(--color-text-inverse, #08101a);
+  --studio-brand-hover: #ff8c73;
+  --studio-brand-soft: var(--brand-soft, rgba(255, 120, 92, .14));
+  --studio-focus: var(--focus, #7fc7ff);
+  --studio-focus-ring: rgba(127, 199, 255, .14);
+  --studio-success: var(--success, #78ebbe);
+  --studio-success-soft: var(--success-soft, rgba(120, 235, 190, .13));
+  --studio-warning: var(--warning, #ffaf55);
+  --studio-warning-soft: var(--warning-soft, rgba(255, 175, 85, .14));
+  --studio-danger: var(--danger, #ff7272);
+  --studio-danger-soft: var(--danger-soft, rgba(255, 107, 107, .13));
+  --studio-shadow: var(--shadow-popover, 0 24px 64px rgba(0, 0, 0, .46), 0 5px 16px rgba(0, 0, 0, .34));
+  --studio-shadow-panel: var(--shadow-float, 0 18px 48px rgba(0, 0, 0, .3), 0 4px 12px rgba(0, 0, 0, .22));
+  --studio-shadow-control: inset 0 1px 0 rgba(255, 255, 255, .05);
+
+  --studio-glass-titlebar: var(--native-glass-titlebar, rgba(8, 11, 17, .28));
+  --studio-glass-sidebar: var(--native-glass-sidebar, rgba(8, 11, 17, .34));
+  --studio-glass-inspector: var(--native-glass-inspector, rgba(20, 25, 34, .58));
+  --studio-glass-workspace: var(--native-glass-workspace, rgba(8, 11, 17, .7));
+  --studio-glass-canvas: rgba(8, 10, 16, .45);
+  --studio-glass-canvas-solid: #0b0f16;
+  --studio-minimap-mask: rgba(7, 10, 17, .76);
+  --studio-glass-strip: var(--native-glass-strip, rgba(8, 11, 18, .26));
+  --studio-glass-node: rgba(17, 21, 29, .78);
+  --studio-glass-popover: var(--glass-popover, rgba(20, 25, 34, .94));
+  --studio-glass-control: rgba(255, 255, 255, .055);
+
+  /* Semantic material roles for every interactive Studio surface. */
+  --studio-control-surface: var(--studio-glass-control);
+  --studio-control-hover: var(--studio-hover);
+  --studio-popover-surface: var(--studio-glass-popover);
+  --studio-listbox-surface: var(--studio-glass-popover);
+  --studio-panel-surface: var(--studio-glass-inspector);
+  --studio-option-hover: var(--studio-selected);
+  --studio-native-control-surface: var(--studio-surface);
+  --studio-native-option-surface: var(--studio-popover-surface);
+  --studio-scroll-thumb: var(--scroll-thumb, rgba(255, 255, 255, .24));
+  --studio-scroll-thumb-hover: var(--scroll-thumb-hover, rgba(255, 255, 255, .38));
+  --studio-scrim: var(--scrim, rgba(2, 5, 12, .66));
+  --studio-radius-control: var(--radius-sm, 8px);
+  --studio-radius-panel: var(--radius-lg, 14px);
+  --studio-radius-popover: var(--radius-lg, 14px);
+  --studio-font-ui: var(--font-ui, "Segoe UI Variable Text", "Noto Sans SC", "Microsoft YaHei UI", sans-serif);
+  --studio-font-display: var(--font-display, "Segoe UI Variable Display", "Noto Sans SC", "Microsoft YaHei UI", sans-serif);
+  --studio-font-mono: var(--font-mono, "Cascadia Code", "Cascadia Mono", Consolas, monospace);
+
+  /* Legacy aliases retained while feature CSS is progressively consolidated. */
+  --frost: var(--studio-text);
+  --ink: #070a11;
+  --night: var(--studio-canvas);
+  --slate: rgba(255, 255, 255, .085);
+  --signal: var(--studio-focus);
+  --signal-bright: var(--studio-focus);
+  --proof: var(--studio-warning);
+  --proof-bright: #ffc477;
+  --line: var(--studio-border-strong);
+  --line-soft: var(--studio-divider);
+  --panel: var(--studio-surface);
+  --panel-raised: var(--studio-subtle);
+  --text-dim: var(--studio-secondary);
+  --text-faint: var(--studio-tertiary);
+  --error: var(--studio-danger);
+  --blue: #a8c8ff;
+  --radius: 8px;
+  --shadow-lg: var(--studio-shadow);
+
+  /* Layer 06 权重阶梯。新增标度，其余页面另行迁移；阶梯说明见 hierarchy-layer.css。 */
+  --studio-type-hero: 17px;
+  --studio-type-title: 13.5px;
+  --studio-type-body: 11.5px;
+  --studio-type-label: 10.5px;
+  --studio-type-micro: 9.5px;
+  --studio-weight-hero: 640;
+  --studio-weight-title: 620;
+  --studio-edge-raised: inset 1px 0 var(--studio-border-strong), inset -1px 0 var(--studio-border-strong);
+}

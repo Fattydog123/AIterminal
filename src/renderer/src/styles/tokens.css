@@ -1,0 +1,116 @@
+/* Layer 01: renderer design tokens. This is the only light-DOM token owner. */
+:root {
+  color-scheme: dark;
+  font-family: "Segoe UI Variable Text", "Noto Sans SC", "Microsoft YaHei UI", sans-serif;
+  font-synthesis: none;
+
+  --canvas: #070a11;
+  --sidebar: rgba(18, 18, 18, 0.34);
+  --surface: rgba(8, 10, 16, 0.93);
+  --surface-subtle: rgba(255, 255, 255, 0.045);
+  --surface-hover: rgba(255, 255, 255, 0.085);
+  --surface-selected: rgba(100, 200, 255, 0.15);
+  --border: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --divider: rgba(255, 255, 255, 0.075);
+  --text: #e6e7ea;
+  --text-secondary: rgba(255, 255, 255, 0.73);
+  --text-tertiary: rgba(255, 255, 255, 0.48);
+  --brand: #ff785c;
+  --brand-soft: rgba(255, 120, 92, 0.14);
+  --link: #a8c8ff;
+  --focus: #7fc7ff;
+  --success: #78ebbe;
+  --success-soft: rgba(120, 235, 190, 0.13);
+  --warning: #ffaf55;
+  --warning-soft: rgba(255, 175, 85, 0.14);
+  --danger: #ff7272;
+  --danger-soft: rgba(255, 107, 107, 0.13);
+  --code-surface: rgba(7, 10, 16, 0.72);
+  --code-border: rgba(255, 255, 255, 0.11);
+  --scrim: rgba(2, 5, 12, 0.66);
+  --scroll-thumb: rgba(255, 255, 255, 0.24);
+  --scroll-thumb-hover: rgba(255, 255, 255, 0.38);
+
+  --font-ui: "Segoe UI Variable Text", "Noto Sans SC", "Microsoft YaHei UI", system-ui, sans-serif;
+  --font-display: "Segoe UI Variable Display", "Noto Sans SC", "Microsoft YaHei UI", system-ui, sans-serif;
+  --font-mono: "Cascadia Code", "Cascadia Mono", "JetBrains Mono", Consolas, monospace;
+  --text-utility: 11px;
+  --text-meta: 12px;
+  --text-control: 13px;
+  --text-title: 16px;
+
+  --titlebar-h: 42px;
+  --task-header-h: 44px;
+  --sidebar-w: 260px;
+  --inspector-w: 326px;
+  --reading-w: 900px;
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-round: 999px;
+  --shadow-float: 0 18px 48px rgba(0, 0, 0, 0.3), 0 4px 12px rgba(0, 0, 0, 0.22);
+  --shadow-popover: 0 24px 64px rgba(0, 0, 0, 0.46), 0 5px 16px rgba(0, 0, 0, 0.34);
+
+  --color-canvas: var(--canvas);
+  --color-sidebar: var(--sidebar);
+  --color-surface: var(--surface);
+  --color-surface-subtle: var(--surface-subtle);
+  --color-surface-hover: var(--surface-hover);
+  --color-surface-selected: var(--surface-selected);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-divider: var(--divider);
+  --color-text: var(--text);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-text-inverse: #08101a;
+  --color-brand: var(--brand);
+  --color-link: var(--link);
+  --color-focus: var(--focus);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-selection: rgba(100, 200, 255, 0.2);
+
+  --duration-fast: 150ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-enter: cubic-bezier(0.19, 1, 0.22, 1);
+
+  /* CodexMonitor semantic glass layers, adapted to the product palette. */
+  --cm-surface-row: color-mix(in srgb, var(--surface-subtle) 44%, transparent);
+  --cm-surface-panel-soft: color-mix(in srgb, var(--surface-subtle) 56%, transparent);
+  --cm-surface-panel: color-mix(in srgb, var(--surface-subtle) 68%, transparent);
+  --cm-surface-panel-strong: color-mix(in srgb, var(--surface-subtle) 78%, transparent);
+  --cm-surface-panel-hover: color-mix(in srgb, var(--surface-subtle) 92%, transparent);
+  --cm-border-soft: color-mix(in srgb, var(--border) 72%, transparent);
+  --cm-border-default: color-mix(in srgb, var(--border) 82%, transparent);
+  --cm-border-strong: color-mix(in srgb, var(--border-strong) 78%, transparent);
+  --cm-border-heavy: color-mix(in srgb, var(--border-strong) 92%, transparent);
+}
+
+@media (min-width: 1680px) {
+  :root {
+    --sidebar-w: 280px;
+    --inspector-w: 332px;
+  }
+}
+
+@media (max-width: 1279px) {
+  :root {
+    --sidebar-w: 224px;
+    --inspector-w: 0px;
+    --task-header-h: 42px;
+  }
+}
+
+@media (max-width: 1039px) {
+  :root {
+    --sidebar-w: 52px;
+  }
+}

@@ -1,0 +1,388 @@
+.background-task-panel {
+  margin: 0 1px 10px;
+  padding-bottom: 9px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.075);
+}
+
+.background-task-panel-heading,
+.background-task-summary,
+.background-task-follow-up {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+}
+
+.background-task-panel-heading {
+  gap: 3px;
+}
+
+.background-task-panel-toggle {
+  display: grid;
+  height: 28px;
+  min-width: 0;
+  flex: 1;
+  grid-template-columns: 13px 14px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 6px;
+  padding: 0 7px;
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.56);
+  font-size: 10.5px;
+  font-weight: 650;
+  text-align: left;
+}
+
+.background-task-panel-toggle:hover,
+.background-task-panel-toggle[aria-expanded="true"] {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.background-task-panel-toggle > span:nth-of-type(1) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.background-task-count {
+  min-width: 18px;
+  padding: 1px 5px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.035);
+  color: rgba(255, 255, 255, 0.45);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  text-align: center;
+}
+
+.background-task-count.is-active {
+  border-color: rgba(100, 200, 255, 0.24);
+  background: rgba(100, 200, 255, 0.12);
+  color: #b9dcff;
+}
+
+.background-task-icon-button,
+.background-task-actions button,
+.background-task-follow-up button {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid transparent;
+  color: rgba(255, 255, 255, 0.52);
+}
+
+.background-task-icon-button {
+  width: 27px;
+  height: 27px;
+  flex: 0 0 27px;
+  border-radius: 8px;
+}
+
+.background-task-icon-button:hover:not(:disabled),
+.background-task-actions button:hover:not(:disabled),
+.background-task-follow-up button:hover:not(:disabled) {
+  border-color: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.085);
+  color: rgba(255, 255, 255, 0.94);
+}
+
+.background-task-list {
+  display: grid;
+  gap: 5px;
+  padding-top: 5px;
+}
+
+.background-task-item {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.085);
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.035);
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.025), transparent 58%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.025);
+  backdrop-filter: blur(16px) saturate(1.08);
+  -webkit-backdrop-filter: blur(16px) saturate(1.08);
+}
+
+.background-task-item.status-running,
+.background-task-item.status-queued,
+.background-task-item.status-waiting-approval {
+  border-color: rgba(100, 200, 255, 0.16);
+  background-color: rgba(100, 200, 255, 0.055);
+}
+
+.background-task-summary {
+  min-height: 42px;
+  padding: 3px 4px 3px 8px;
+}
+
+.background-task-main {
+  display: grid;
+  min-width: 0;
+  flex: 1;
+  grid-template-columns: 14px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 7px;
+  padding: 2px 3px;
+  color: rgba(255, 255, 255, 0.74);
+  text-align: left;
+}
+
+.background-task-copy {
+  display: grid;
+  min-width: 0;
+  gap: 1px;
+}
+
+.background-task-copy strong,
+.background-task-copy small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.background-task-copy strong {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+.background-task-copy small {
+  color: rgba(255, 255, 255, 0.43);
+  font-size: 9.5px;
+}
+
+.background-task-state-icon {
+  color: #86caff;
+}
+
+.status-completed .background-task-state-icon { color: var(--success); }
+.status-failed .background-task-state-icon { color: var(--danger); }
+.status-cancelled .background-task-state-icon { color: rgba(255, 255, 255, 0.4); }
+.status-interrupted .background-task-state-icon,
+.status-waiting-approval .background-task-state-icon { color: var(--warning); }
+
+.background-task-status {
+  max-width: 54px;
+  overflow: hidden;
+  padding: 2px 5px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.48);
+  font-size: 8.5px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.background-task-status.status-running,
+.background-task-status.status-queued {
+  background: rgba(100, 200, 255, 0.12);
+  color: #afd9ff;
+}
+
+.background-task-status.status-waiting-approval,
+.background-task-status.status-interrupted {
+  background: rgba(255, 184, 92, 0.12);
+  color: #ffd19a;
+}
+
+.background-task-status.status-completed {
+  background: rgba(80, 205, 145, 0.12);
+  color: #a5e8c7;
+}
+
+.background-task-status.status-failed {
+  background: rgba(255, 105, 95, 0.12);
+  color: #ffaaa3;
+}
+
+.background-task-actions {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 2px;
+}
+
+.background-task-actions button,
+.background-task-follow-up button {
+  width: 27px;
+  height: 27px;
+  flex: 0 0 27px;
+  border-radius: 8px;
+}
+
+.background-task-details {
+  display: grid;
+  gap: 7px;
+  padding: 0 8px 8px 29px;
+}
+
+.background-task-events {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 5px 0 1px;
+  list-style: none;
+}
+
+.background-task-events li {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: 6px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255, 255, 255, 0.53);
+  font-size: 9.5px;
+}
+
+.background-task-events li > span:first-child {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.background-task-events li.event-running > span:first-child { background: #69bfff; box-shadow: 0 0 0 3px rgba(105, 191, 255, 0.09); }
+.background-task-events li.event-completed > span:first-child { background: var(--success); }
+.background-task-events li.event-failed > span:first-child { background: var(--danger); }
+.background-task-events li.event-waiting > span:first-child { background: var(--warning); }
+
+.background-task-events li > span:nth-child(2) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.background-task-events time {
+  color: rgba(255, 255, 255, 0.3);
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+}
+
+.background-task-result,
+.background-task-error,
+.background-task-empty {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.48);
+  font-size: 9.5px;
+  line-height: 14px;
+  overflow-wrap: anywhere;
+}
+
+.background-task-result.is-error,
+.background-task-error {
+  color: #ffaaa3;
+}
+
+.background-task-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+  padding: 4px 7px;
+}
+
+.background-task-empty {
+  padding: 5px 7px 2px;
+}
+
+.background-task-follow-up {
+  gap: 5px;
+}
+
+.background-task-follow-up input {
+  width: 100%;
+  min-width: 0;
+  height: 28px;
+  padding: 0 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  outline: none;
+  background: rgba(5, 8, 14, 0.28);
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 10px;
+}
+
+.background-task-follow-up input:focus {
+  border-color: rgba(100, 200, 255, 0.28);
+  background: rgba(8, 12, 19, 0.48);
+  box-shadow: 0 0 0 2px rgba(100, 200, 255, 0.06);
+}
+
+.background-task-follow-up input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.background-task-follow-up button {
+  border-color: rgba(100, 200, 255, 0.18);
+  background: rgba(100, 200, 255, 0.1);
+  color: #b9dcff;
+}
+
+.background-task-queued {
+  color: rgba(255, 255, 255, 0.38);
+  font-size: 9px;
+}
+
+.background-task-show-all {
+  height: 25px;
+  border-radius: 7px;
+  color: rgba(255, 255, 255, 0.44);
+  font-size: 9.5px;
+}
+
+.background-task-show-all:hover {
+  background: rgba(255, 255, 255, 0.045);
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.composer-run-actions {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 6px;
+}
+
+.background-turn-button {
+  position: relative;
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.07);
+  color: rgba(255, 255, 255, 0.68);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.background-turn-button:hover:not(:disabled) {
+  border-color: rgba(100, 200, 255, 0.28);
+  background: rgba(100, 200, 255, 0.14);
+  color: #d8eaff;
+}
+
+.background-turn-button:disabled,
+.background-task-icon-button:disabled,
+.background-task-actions button:disabled,
+.background-task-follow-up button:disabled {
+  cursor: default;
+  opacity: 0.38;
+}
+
+@media (max-width: 560px) {
+  .composer-run-actions {
+    gap: 4px;
+  }
+
+  .background-turn-button,
+  .composer-run-actions .send-button {
+    width: 32px;
+    height: 32px;
+    flex-basis: 32px;
+  }
+
+  .background-task-status {
+    display: none;
+  }
+}

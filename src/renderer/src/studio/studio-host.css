@@ -1,0 +1,99 @@
+.studio-host-surface {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  min-width: 0;
+  min-height: 0;
+  grid-template-rows: minmax(0, 1fr);
+  overflow: hidden;
+  background: transparent;
+}
+
+.studio-host-header {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 0;
+  min-width: 0;
+  pointer-events: none;
+}
+
+.studio-host-surface.is-focus-mode .studio-host-header {
+  display: none;
+}
+
+.studio-host-mode-segment {
+  position: absolute;
+  top: 10px;
+  left: 13px;
+  pointer-events: none;
+  width: 176px;
+  height: 30px;
+  flex-basis: 176px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.04), transparent 60%),
+    rgba(5, 8, 14, 0.3);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.045), 0 8px 20px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(18px) saturate(1.12);
+  -webkit-backdrop-filter: blur(18px) saturate(1.12);
+}
+
+.studio-host-mode-segment button {
+  pointer-events: auto;
+}
+
+.studio-shadow-host {
+  grid-row: 1;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background: transparent;
+}
+
+.studio-surface-loading {
+  display: grid;
+  min-height: 0;
+  place-items: center;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+@media (max-width: 1039px) {
+  .studio-host-header {
+    grid-template-columns: 38px;
+    gap: 0;
+    padding: 0 7px;
+  }
+
+  .studio-host-mode-segment {
+    position: absolute;
+    z-index: 4;
+    top: 48px;
+    left: 7px;
+    width: 38px;
+    height: auto;
+    grid-template-columns: 1fr;
+    flex-basis: auto;
+    gap: 2px;
+    padding: 2px;
+  }
+
+  .studio-host-mode-segment button {
+    width: 32px;
+    height: 30px;
+    gap: 0;
+    padding: 0;
+    font-size: 0;
+  }
+
+  .studio-host-mode-segment button svg {
+    width: 14px;
+    height: 14px;
+  }
+}
